@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null)
 
   const handleSignin = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         console.log(res);
+        setUser(res.user)
         toast.success("Login Sucessfull");
       })
       .catch((e) => {
@@ -25,6 +27,7 @@ const Login = () => {
         toast.error(e.message);
       });
   };
+
 
   return (
     <div>
