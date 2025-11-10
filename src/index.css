@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+/* modified class */
+
+/* .clasName {
+    @apply tailwind class dibo  
+} */
