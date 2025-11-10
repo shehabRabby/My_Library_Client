@@ -1,6 +1,7 @@
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import React, { useState } from "react";
@@ -9,7 +10,6 @@ import { FcGoogle } from "react-icons/fc";
 import { IoEyeOff } from "react-icons/io5";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";
-
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -42,6 +42,19 @@ const Login = () => {
         setUser(null);
       })
       .catch((e) => {
+        toast.error(e.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth,googleProvider)
+    .then((res) => {
+        console.log(res);
+        setUser(res.user);
+        toast.success("Login Sucessfull");
+      })
+      .catch((e) => {
+        console.log(e);
         toast.error(e.message);
       });
   };
@@ -163,7 +176,12 @@ const Login = () => {
                   <div className="flex-grow h-px bg-gray-300"></div>
                 </div>
 
-                <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition">
+                {/* googleSignin  */}
+                <button
+                  type="button"
+                  onClick={handleGoogleSignIn}
+                  className="w-full flex items-center cursor-pointer justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition"
+                >
                   <FcGoogle size={22} />
                   <span className="font-medium text-gray-700">
                     Continue with Google

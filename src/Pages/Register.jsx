@@ -17,9 +17,9 @@ const Register = () => {
     const password = e.target.password.value;
     // console.log(name,email,photo,password,photo);
 
-    // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
     // if(!regex.test(password)){
-    //     toast.error("Password must be 8+ chars, include uppercase, lowercase, number & special char.");
+    //     toast.error("Password must be 6+ chars, include uppercase, lowercase, number & special char.");
     //     return;
     // }
 
@@ -35,7 +35,21 @@ const Register = () => {
       })
       .catch((e) => {
         console.log(e);
-        toast.error(e.message);
+        if (e.code === "auth/email-already-in-use") {
+          toast.error("User already exists in database");
+        } else if (e.code === "auth/weak-password") {
+          toast.error("At least 6 characters needed");
+        } else if (e.code === "auth/invalid-email") {
+          toast.error("Invalid email address");
+        } else if (e.code === "auth/operation-not-allowed") {
+          toast.error("Email/password accounts are not enabled");
+        } else if (e.code === "auth/network-request-failed") {
+          toast.error("Network error, please try again");
+        } else if (e.code === "auth/too-many-requests") {
+          toast.error("Too many requests, please try later");
+        } else {
+          toast.error("Something went wrong, please try again");
+        }
       });
   };
 
@@ -111,8 +125,11 @@ const Register = () => {
                   placeholder="Password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
                 />
-                <span onClick={()=>setShow(!show)} className="absolute right-[15px] top-[15px] cursor-pointer z-10">
-                   {show ? <FaEye></FaEye>:<IoEyeOff></IoEyeOff>}
+                <span
+                  onClick={() => setShow(!show)}
+                  className="absolute right-[15px] top-[15px] cursor-pointer z-10"
+                >
+                  {show ? <FaEye></FaEye> : <IoEyeOff></IoEyeOff>}
                 </span>
               </div>
 
