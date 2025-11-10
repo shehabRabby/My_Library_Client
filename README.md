@@ -71,3 +71,4 @@ const Navbar = () => {
 };
 
 export default Navbar; -->
+ <!-- || "https://i.pravatar.cc/100" -->

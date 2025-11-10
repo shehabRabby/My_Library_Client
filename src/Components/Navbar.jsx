@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
+import logo from "../assets/logo.png";
 import { NavLink } from "react-router";
-import logo from "../assets/logo.png"; // adjust path if needed
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/firebase.config";
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => setUser(null))
+      .catch((err) => console.log(err));
+  };
+
   const navLinkClass = ({ isActive }) =>
     `transition-colors duration-200 hover:text-violet-300 ${
       isActive
@@ -9,92 +29,127 @@ const Navbar = () => {
         : ""
     }`;
 
-  const links = (
-    <>
-      <NavLink to="/" className={navLinkClass}>
-        Home
-      </NavLink>
-      <NavLink to="/all-book" className={navLinkClass}>
-        All Books
-      </NavLink>
-      <NavLink to="/add-books" className={navLinkClass}>
-        Add Books
-      </NavLink>
-      <NavLink to="/about-us" className={navLinkClass}>
-        About Us
-      </NavLink>
-      <NavLink to="/sign-in" className={navLinkClass}>
-        Login
-      </NavLink>
-      <NavLink to="/sign-up" className={navLinkClass}>
-        Register
-      </NavLink>
-    </>
-  );
+  if (loading) return null;
 
   return (
     <div className="bg-violet-800 text-white shadow-md">
       <div className="max-w-7xl mx-auto navbar px-4">
-        {/* Left Section */}
-        <div className="navbar-start">
-          {/* Mobile Dropdown */}
-          <div className="dropdown lg:hidden">
-            <div tabIndex={0} role="button" className="btn btn-ghost text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-violet-700 rounded-box z-[1] mt-3 w-52 p-3 shadow text-white space-y-2"
-            >
-              {links}
-            </ul>
-          </div>
-
-          {/* Logo + Name */}
+        {/* Logo + Hamburger */}
+        <div className="navbar-start flex items-center gap-3">
           <NavLink to="/" className="flex items-center gap-3">
             <img
               src={logo}
               alt="Logo"
-              className="h-16 w-14 sm:h-16 sm:w-16 lg:h-25 lg:w-25 rounded-full object-cover"
+              className="h-16 w-16 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full object-cover"
             />
             <span className="hidden xl:inline font-bold text-2xl tracking-wide">
               Book Haven
             </span>
           </NavLink>
+
+          {/* Hamburger menu for small/medium devices */}
+          <div className="lg:hidden ml-2">
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-violet-700 rounded-box w-52 gap-2"
+              >
+                <NavLink to="/" className={navLinkClass}>
+                  Home
+                </NavLink>
+                <NavLink to="/all-book" className={navLinkClass}>
+                  All Books
+                </NavLink>
+                <NavLink to="/add-books" className={navLinkClass}>
+                  Add Books
+                </NavLink>
+                {user ? (
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="text-right text-violet-200 hover:text-white"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                ) : (
+                  <>
+                    <NavLink to="/sign-in" className={navLinkClass}>
+                      Login
+                    </NavLink>
+                    <NavLink to="/sign-up" className={navLinkClass}>
+                      Register
+                    </NavLink>
+                  </>
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
 
-        {/* Center Section (hidden on mobile) */}
+        {/* Desktop links */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-6 text-base font-medium">
-            {links}
+            <NavLink to="/" className={navLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/all-book" className={navLinkClass}>
+              All Books
+            </NavLink>
+            <NavLink to="/add-books" className={navLinkClass}>
+              Add Books
+            </NavLink>
+            {user ? null : (
+              <>
+                <NavLink to="/sign-in" className={navLinkClass}>
+                  Login
+                </NavLink>
+                <NavLink to="/sign-up" className={navLinkClass}>
+                  Register
+                </NavLink>
+              </>
+            )}
           </ul>
         </div>
 
-        {/* Right Section */}
+        {/* User Info / Auth */}
         <div className="navbar-end flex items-center gap-3">
-          <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 rounded-full border-2 border-white overflow-hidden">
-            <img
-              src="https://i.pravatar.cc/100"
-              alt="User"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <button className="btn bg-white text-violet-700 border-none hover:bg-violet-100 font-semibold">
-            Logout
-          </button>
+          {user ? (
+            <>
+              <div className="relative group">
+                <img
+                  src={user.photoURL || "https://i.pravatar.cc/100"}
+                  alt={user.displayName}
+                  className="h-12 w-12 rounded-full object-cover border-2 border-white"
+                />
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 text-sm whitespace-nowrap">
+                  {user.displayName || "User"}
+                </span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="btn bg-white text-violet-700 border-none hover:bg-violet-100 font-semibold"
+              >
+                Logout
+              </button>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

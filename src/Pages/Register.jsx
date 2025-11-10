@@ -1,56 +1,70 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";
+import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+import { FcGoogle } from "react-icons/fc";
+
+const googleProvider = new GoogleAuthProvider();
 
 const Register = () => {
   const [show, setShow] = useState(false);
-  // sign up
-  const handleSignup = (e) => {
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    // console.log(name,email,photo,password,photo);
-
-    // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    // if(!regex.test(password)){
-    //     toast.error("Password must be 6+ chars, include uppercase, lowercase, number & special char.");
-    //     return;
-    // }
 
     if (password.length < 6) {
       toast.error("Password Should be at least 6 character");
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        console.log(res);
-        toast.success("Register Successfull");
-      })
-      .catch((e) => {
-        console.log(e);
-        if (e.code === "auth/email-already-in-use") {
-          toast.error("User already exists in database");
-        } else if (e.code === "auth/weak-password") {
-          toast.error("At least 6 characters needed");
-        } else if (e.code === "auth/invalid-email") {
-          toast.error("Invalid email address");
-        } else if (e.code === "auth/operation-not-allowed") {
-          toast.error("Email/password accounts are not enabled");
-        } else if (e.code === "auth/network-request-failed") {
-          toast.error("Network error, please try again");
-        } else if (e.code === "auth/too-many-requests") {
-          toast.error("Too many requests, please try later");
-        } else {
-          toast.error("Something went wrong, please try again");
-        }
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      // Update profile with displayName and photoURL
+      await updateProfile(res.user, {
+        displayName: name,
+        photoURL: photo || "https://i.pravatar.cc/100",
       });
+      await auth.signOut();
+
+      toast.success("Register Successful! Please Login");
+      navigate("/sign-in"); // auto-login redirect
+    } catch (e) {
+      console.log(e);
+      if (e.code === "auth/email-already-in-use") {
+        toast.error("User already exists in database");
+      } else if (e.code === "auth/weak-password") {
+        toast.error("At least 6 characters needed");
+      } else if (e.code === "auth/invalid-email") {
+        toast.error("Invalid email address");
+      } else if (e.code === "auth/operation-not-allowed") {
+        toast.error("Email/password accounts are not enabled");
+      } else if (e.code === "auth/network-request-failed") {
+        toast.error("Network error, please try again");
+      } else if (e.code === "auth/too-many-requests") {
+        toast.error("Too many requests, please try later");
+      } else {
+        toast.error("Something went wrong, please try again");
+      }
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Login Successful");
+      navigate("/");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -161,7 +175,10 @@ const Register = () => {
               <div className="flex-grow h-px bg-gray-300"></div>
             </div>
 
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition">
+            <button
+              onClick={handleGoogleSignIn}
+              className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition"
+            >
               <FcGoogle size={22} />
               <span className="font-medium text-gray-700">
                 Continue with Google
