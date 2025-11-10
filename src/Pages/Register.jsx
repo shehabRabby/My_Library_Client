@@ -1,10 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa";
+import { IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
+  const [show, setShow] = useState(false);
   // sign up
   const handleSignup = (e) => {
     e.preventDefault();
@@ -101,12 +104,17 @@ const Register = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
               />
 
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-              />
+              <div className="relative">
+                <input
+                  type={show ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
+                />
+                <span onClick={()=>setShow(!show)} className="absolute right-[15px] top-[15px] cursor-pointer z-10">
+                   {show ? <FaEye></FaEye>:<IoEyeOff></IoEyeOff>}
+                </span>
+              </div>
 
               <div className="flex items-center gap-2 text-sm">
                 <input

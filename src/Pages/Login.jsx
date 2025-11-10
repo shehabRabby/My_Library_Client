@@ -1,7 +1,31 @@
-import React from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { IoEyeOff } from "react-icons/io5";
+import { auth } from "../Firebase/firebase.config";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const [show, setShow] = useState(false);
+
+  const handleSignin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    // console.log(email,password)
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        console.log(res);
+        toast.success("Login Sucessfull");
+      })
+      .catch((e) => {
+        console.log(e);
+        toast.error(e.message);
+      });
+  };
+
   return (
     <div>
       <div>
@@ -45,47 +69,55 @@ const Login = () => {
                 Login to your account
               </h2>
 
-               <form className="space-y-5">
-                   <input
-                     type="email"
-                     name="email"
-                     placeholder="Email"
-                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-                   />
-   
-                   <input
-                     type="password"
-                     name="password"
-                     placeholder="Password"
-                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-                   />
-   
-                   <div className="flex items-center justify-between text-sm">
-                     <div className="flex items-center gap-2">
-                       <input
-                         type="checkbox"
-                         id="remember"
-                         className="accent-lime-400"
-                       />
-                       <label htmlFor="remember" className="text-gray-600">
-                         Remember me
-                       </label>
-                     </div>
-                     <a
-                       href="/forgot-password"
-                       className="text-gray-800 hover:underline font-medium"
-                     >
-                       Forgot password?
-                     </a>
-                   </div>
-   
-                   <button
-                     type="submit"
-                     className="w-full py-3 bg-black hover:bg-gray-900 text-white rounded-xl font-semibold transition"
-                   >
-                     Login
-                   </button>
-               </form>
+              <form onSubmit={handleSignin} className="space-y-5">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
+                />
+
+                <div className="relative">
+                  <input
+                    type={show ? "text" : "password"}
+                    name="password"
+                    placeholder="Password"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
+                  />
+                  <span
+                    onClick={() => setShow(!show)}
+                    className="absolute right-[15px] top-[15px] cursor-pointer z-10"
+                  >
+                    {show ? <FaEye></FaEye> : <IoEyeOff></IoEyeOff>}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      className="accent-lime-400"
+                    />
+                    <label htmlFor="remember" className="text-gray-600">
+                      Remember me
+                    </label>
+                  </div>
+                  <a
+                    href="/forgot-password"
+                    className="text-gray-800 hover:underline font-medium"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-black hover:bg-gray-900 text-white rounded-xl font-semibold transition"
+                >
+                  Login
+                </button>
+              </form>
 
               <div className="flex items-center my-5">
                 <div className="flex-grow h-px bg-gray-300"></div>
