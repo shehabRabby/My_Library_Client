@@ -1,6 +1,7 @@
 import React, { use, useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddBook = () => {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,11 @@ const AddBook = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-       toast.success("Successfully Book Added")
+        Swal.fire({
+          title: "Added!",
+          text: "Book Successfully Added",
+          icon: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
