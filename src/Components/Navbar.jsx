@@ -79,6 +79,9 @@ const Navbar = () => {
                 <NavLink to="/add-books" className={navLinkClass}>
                   Add Books
                 </NavLink>
+                <NavLink to="/my-books" className={navLinkClass}>
+                  My Books
+                </NavLink>
                 {user ? (
                   <li>
                     <button
@@ -114,6 +117,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/add-books" className={navLinkClass}>
               Add Books
+            </NavLink>
+            <NavLink to="/my-books" className={navLinkClass}>
+              My Books
             </NavLink>
             {user ? null : (
               <>

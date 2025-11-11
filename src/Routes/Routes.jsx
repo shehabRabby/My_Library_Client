@@ -7,6 +7,7 @@ import AllBooks from "../Pages/AllBooks";
 import MyBook from "../Pages/MyBook";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PrivateRoute from "../Context/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-books",
-        element: <AddBook></AddBook>,
+        element: (
+          <PrivateRoute>
+            <AddBook></AddBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-book",
@@ -31,7 +36,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-books",
-        element: <MyBook></MyBook>,
+        element: (
+          <PrivateRoute>
+            <MyBook></MyBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/sign-in",
