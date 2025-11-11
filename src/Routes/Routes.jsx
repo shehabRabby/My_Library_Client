@@ -33,6 +33,7 @@ export const router = createBrowserRouter([
       {
         path: "/all-book",
         element: <AllBooks></AllBooks>,
+        loader: () => fetch("http://localhost:3000/books"),
       },
       {
         path: "/my-books",
