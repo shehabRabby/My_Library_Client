@@ -1,12 +1,14 @@
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
+import { useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-toastify";
 
-const AddBook = () => {
-  const { user } = useContext(AuthContext);
-  // console.log(user);
+const UpdateBooks = () => {
+  const data = useLoaderData();
+   const { user } = useContext(AuthContext);
+  const book = data.result || data; // handle both formats
 
-  const handleAddBook = (e) => {
+ const handleUpdateBook = (e) => {
     e.preventDefault();
     const formData = {
       title: e.target.title.value,
@@ -19,8 +21,8 @@ const AddBook = () => {
       userName: e.target.name.value,
     };
 
-    fetch("http://localhost:3000/books", {
-      method: "POST",
+    fetch(`http://localhost:3000/books/${book._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -28,26 +30,30 @@ const AddBook = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-       toast.success("Successfully Book Added")
+        toast.success("Update Books successfully")
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+
+
+
   return (
     <div>
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border-violet-500 border-1 mt-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-          Add New Book
+          Update Book
         </h2>
 
-        <form onSubmit={handleAddBook} className="space-y-4">
+        <form onSubmit={handleUpdateBook} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">Title</label>
             <input
               type="text"
               name="title"
+              defaultValue={book?.title}
               placeholder="Book title"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -58,6 +64,7 @@ const AddBook = () => {
             <input
               type="text"
               name="author"
+              defaultValue={book?.author}
               placeholder="Author Name"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -67,6 +74,7 @@ const AddBook = () => {
             <label className="block font-medium mb-1">Genre</label>
             <select
               name="genre"
+              defaultValue={book?.genre}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option>Select Genre</option>
@@ -86,6 +94,7 @@ const AddBook = () => {
               step="0.1"
               max="5"
               min="0"
+              defaultValue={book?.rating}
               placeholder="Rating out of 5"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -96,7 +105,8 @@ const AddBook = () => {
             <textarea
               rows={5}
               name="summary"
-              placeholder="Write a short summary (3-5 lines)"
+              defaultValue={book?.summary}
+              placeholder="Write a short summary (3–5 lines)"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
@@ -106,6 +116,7 @@ const AddBook = () => {
             <input
               type="url"
               name="photo"
+              defaultValue={book?.coverImage}
               placeholder="https://example.com/image.jpg"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -117,9 +128,9 @@ const AddBook = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="user@example.com"
-                defaultValue={user.email}
+                defaultValue={user?.email}
                 className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                readOnly
               />
             </div>
 
@@ -127,10 +138,10 @@ const AddBook = () => {
               <label className="block font-medium mb-1">User Name</label>
               <input
                 type="text"
-                placeholder="User Name"
                 name="name"
-                defaultValue={user.displayName}
+                defaultValue={user?.displayName}
                 className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                readOnly
               />
             </div>
           </div>
@@ -139,7 +150,7 @@ const AddBook = () => {
             type="submit"
             className="w-full bg-indigo-600 text-white p-3 rounded-lg font-medium hover:bg-indigo-700 transition duration-300 cursor-pointer"
           >
-            Submit
+            Update Book
           </button>
         </form>
       </div>
@@ -147,4 +158,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default UpdateBooks;

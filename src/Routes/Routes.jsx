@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "../Context/PrivateRoute";
 import BookDetails from "../Pages/BookDetails";
+import UpdateBooks from "../Pages/UpdateBooks";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:3000/latest-books"),
       },
       {
         path: "/about-us",
@@ -45,6 +47,16 @@ export const router = createBrowserRouter([
         path: "/all-book",
         element: <AllBooks></AllBooks>,
         loader: () => fetch("http://localhost:3000/books"),
+      },
+      {
+        path: "/update-books/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateBooks></UpdateBooks>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/books/${params.id}`),
       },
       {
         path: "/my-books",

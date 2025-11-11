@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, Link } from "react-router";
 import { FaStar } from "react-icons/fa";
 
 const BookDetails = () => {
@@ -28,9 +28,14 @@ const BookDetails = () => {
                 {book.title}
               </h1>
               <p className="text-lg text-gray-600 mb-2">
-                by <span className="font-semibold text-gray-800">{book.author}</span>
+                by{" "}
+                <span className="font-semibold text-gray-800">
+                  {book.author}
+                </span>
               </p>
-              <p className="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium mb-4">{book.genre}</p>
+              <p className="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                {book.genre}
+              </p>
 
               <div className="flex items-center mb-4">
                 <FaStar className="text-yellow-500 mr-1" />
@@ -54,7 +59,7 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* Bottom Section (Extra Details Table Style) */}
+        {/* Bottom Section */}
         <div className="border-t border-gray-200 mt-6 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
           <div>
             <p className="text-gray-500">Format</p>
@@ -68,6 +73,16 @@ const BookDetails = () => {
             <p className="text-gray-500">Rating</p>
             <p className="font-semibold">{book.rating} / 5</p>
           </div>
+        </div>
+
+        {/* Update Button */}
+        <div className="flex justify-end p-6 border-t border-gray-200">
+          <Link
+            to={`/update-books/${book._id}`}
+            className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300"
+          >
+            Update Book
+          </Link>
         </div>
       </div>
     </div>
