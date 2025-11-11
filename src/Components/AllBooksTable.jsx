@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const AllBooksTable = ({ books }) => {
   return (
@@ -67,12 +68,10 @@ const AllBooksTable = ({ books }) => {
                   </div>
                 </td>
                 <td className="block md:table-cell py-2 px-3 text-center">
-                  <button
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded-lg font-medium transition-colors mt-2 md:mt-0 cursor-pointer"
-                    aria-label={`View details for ${book.title}`}
-                  >
+                  <Link to={`/book-details/${book._id}`} 
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded-lg font-medium transition-colors mt-2 md:mt-0 cursor-pointer">
                     View Details
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))
