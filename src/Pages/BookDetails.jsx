@@ -1,10 +1,45 @@
 import React from "react";
-import { useLoaderData, Link } from "react-router";
+import { useLoaderData, Link, useNavigate } from "react-router";
 import { FaStar } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
   const data = useLoaderData();
   const book = data.result || data; // handle both formats
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/books/${book._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            navigate('/all-book')
+            Swal.fire({
+              title: "Deleted!",
+              text: "Book has been deleted.",
+              icon: "success",
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-10 px-4 md:px-10">
@@ -75,14 +110,21 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* Update Button */}
-        <div className="flex justify-end p-6 border-t border-gray-200">
+        {/* Update & Delete Buttons */}
+        <div className="flex flex-col sm:flex-row justify-end p-6 border-t border-gray-200 gap-4">
           <Link
             to={`/update-books/${book._id}`}
-            className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300"
+            className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300 text-center"
           >
             Update Book
           </Link>
+
+          <button
+            onClick={handleDelete}
+            className="px-5 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 text-center cursor-pointer"
+          >
+            Delete Book
+          </button>
         </div>
       </div>
     </div>
