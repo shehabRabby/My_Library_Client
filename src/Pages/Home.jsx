@@ -6,6 +6,7 @@ import book1 from "../assets/2.png";
 import book2 from "../assets/2.png";
 import book3 from "../assets/2.png";
 import book4 from "../assets/2.png";
+import HomeStatic from "../Components/HomeStatic";
 
 const bannerImages = [book1, book2, book3, book4];
 
@@ -32,7 +33,8 @@ const Home = () => {
               Welcome to Book Haven
             </h1>
             <p className="text-lg sm:text-xl text-gray-100 mb-6 drop-shadow-sm">
-              Explore thousands of books, discover hidden gems, and unleash your imagination.
+              Explore thousands of books, discover hidden gems, and unleash your
+              imagination.
             </p>
 
             {/* Buttons */}
@@ -53,7 +55,7 @@ const Home = () => {
           </div>
 
           {/* Banner Animation */}
-          <div className="md:w-1/2 mt-20 lg:mt-10 md:mt-0 flex justify-center">
+          {/* <div className="md:w-1/2 mt-20 lg:mt-10 md:mt-0 flex justify-center">
             <div className="w-64 h-64 bg-white/20 rounded-xl animate-bounce shadow-2xl flex items-center justify-center overflow-hidden">
               <img
                 src={bannerImages[currentIndex]}
@@ -61,7 +63,7 @@ const Home = () => {
                 className=" p-5 object-contain transition-all duration-700"
               />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Animated Background Shapes */}
@@ -71,6 +73,8 @@ const Home = () => {
 
       {/* Latest Books */}
       <LatestBooks data={data} />
+
+      <HomeStatic></HomeStatic>
     </div>
   );
 };
