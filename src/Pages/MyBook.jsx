@@ -3,11 +3,15 @@ import { AuthContext } from "../Context/AuthProvider";
 import AllBooksTable from "../Components/AllBooksTable";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { toast } from "react-toastify";
+import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyBook = () => {
   const { user } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   // Fetch user's books
   useEffect(() => {
@@ -24,11 +28,53 @@ const MyBook = () => {
       });
   }, [user]);
 
+  // 🔥 Handle delete
+const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:3000/books/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to delete"); // check HTTP status
+          return res.json();
+        })
+        .then(() => {
+          // Remove deleted book from UI immediately
+          setBooks((prev) => prev.filter((book) => book._id !== id));
+
+          Swal.fire({
+            title: "Deleted!",
+            text: "Book has been deleted.",
+            icon: "success",
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error("Something went wrong!");
+        });
+    }
+  });
+};
+
+
+
   if (loading) {
     return <p className="text-center mt-10">Loading your books...</p>;
   }
 
-  // Map books and add use tooltip 
+  // Add tooltip + buttons
   const booksWithTooltips = books.map((book) => ({
     ...book,
     title: (
@@ -44,11 +90,18 @@ const MyBook = () => {
       </>
     ),
     actions: (
-      <div className="flex justify-center gap-2">
-        <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
+      <div className="flex justify-center gap-2 flex-wrap">
+        <Link
+          to={`/update-books/${book._id}`}
+          className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300 text-center"
+        >
           Update
-        </button>
-        <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+        </Link>
+
+        <button
+           onClick={() => handleDelete(book._id)}
+          className="px-5 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 text-center cursor-pointer"
+        >
           Delete
         </button>
       </div>
@@ -61,7 +114,7 @@ const MyBook = () => {
         My Books
       </h2>
 
-      <AllBooksTable books={booksWithTooltips} />
+      <AllBooksTable books={booksWithTooltips} loading={loading} />
     </div>
   );
 };

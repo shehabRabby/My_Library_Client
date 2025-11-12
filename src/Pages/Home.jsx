@@ -14,7 +14,7 @@ const Home = () => {
   const data = useLoaderData();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Cycle through images every 2 seconds
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);

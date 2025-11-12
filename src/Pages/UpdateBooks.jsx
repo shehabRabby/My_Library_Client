@@ -15,7 +15,7 @@ const UpdateBooks = () => {
       title: e.target.title.value,
       author: e.target.author.value,
       genre: e.target.genre.value,
-      rating: e.target.rating.value,
+      rating: parseFloat(e.target.rating.value) || 0,
       summary: e.target.summary.value,
       coverImage: e.target.photo.value,
       userEmail: e.target.email.value,

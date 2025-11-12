@@ -12,8 +12,8 @@ const AddBook = () => {
       title: e.target.title.value,
       author: e.target.author.value,
       genre: e.target.genre.value,
-      // rating: parseFloat(e.target.rating.value) || 0,
-      rating: e.target.rating.value,
+      rating: parseFloat(e.target.rating.value) || 0,
+      // rating: e.target.rating.value,
       summary: e.target.summary.value,
       coverImage: e.target.photo.value,
       userEmail: e.target.email.value,
@@ -38,6 +38,10 @@ const AddBook = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    form.reset();
+    form.email.value = user.email;
+    form.name.value = user.displayName;
   };
 
   return (
