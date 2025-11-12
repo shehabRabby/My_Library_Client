@@ -6,7 +6,7 @@ const AllBooksTable = ({ books }) => {
   return (
     <div className="w-full p-4 md:p-6 bg-gray-50 rounded-lg shadow-lg overflow-x-auto">
       <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
-        {/* Desktop Header */}
+        {/* for large device */}
         <thead className="hidden md:table-header-group bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
           <tr>
             <th className="py-3 px-4 text-left text-sm font-semibold uppercase tracking-wider">
@@ -43,7 +43,7 @@ const AllBooksTable = ({ books }) => {
                 key={book._id}
                 className="hover:bg-gray-100 transition-colors block md:table-row mb-4 md:mb-0 rounded-lg"
               >
-                {/* Mobile stacked layout */}
+                {/* for mobile */}
                 <td className="block md:table-cell py-2 px-3 text-gray-700">
                   <span className="font-semibold md:hidden">#:</span>{" "}
                   {index + 1}
@@ -68,8 +68,10 @@ const AllBooksTable = ({ books }) => {
                   </div>
                 </td>
                 <td className="block md:table-cell py-2 px-3 text-center">
-                  <Link to={`/book-details/${book._id}`} 
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded-lg font-medium transition-colors mt-2 md:mt-0 cursor-pointer">
+                  <Link
+                    to={`/book-details/${book._id}`}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded-lg font-medium transition-colors mt-2 md:mt-0 cursor-pointer"
+                  >
                     View Details
                   </Link>
                 </td>

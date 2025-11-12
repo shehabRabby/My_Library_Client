@@ -29,6 +29,15 @@ const Navbar = () => {
         : ""
     }`;
 
+  const handleTheme = (checked) => {
+    const html = document.querySelector("html");
+    if (checked) {
+      html.setAttribute("data-theme", "dark");
+    } else {
+      html.setAttribute("data-theme", "light");
+    }
+  };
+
   if (loading) return null;
 
   return (
@@ -134,8 +143,20 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* User Info / Auth */}
         <div className="navbar-end flex items-center gap-3">
+          {/* Theme toggle */}
+          <label className="flex items-center gap-2 cursor-pointer">
+            <span className="hidden sm:inline text-white text-sm">
+              Change Theme
+            </span>
+            <input
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              onChange={(e) => handleTheme(e.target.checked)}
+              className="toggle toggle-sm"
+            />
+          </label>
+
           {user ? (
             <>
               <div className="relative group">

@@ -5,29 +5,50 @@ import AllBooksTable from "../Components/AllBooksTable";
 const AllBooks = () => {
   const data = useLoaderData();
   const [books, setBooks] = useState(data);
-  const [loading, setLoading] = useState(false); // loading state
+  const [loading, setLoading] = useState(false);
+  const [sortOrder, setSortOrder] = useState("desc"); // default descending
 
   const handleSearch = (e) => {
     e.preventDefault();
     const searchTitle = e.target.title.value.trim();
 
     if (searchTitle === "") {
-      setBooks(data); // reset to all books
+      setBooks(data);
       return;
     }
 
-    setLoading(true); // start loading
+    setLoading(true);
     fetch(`http://localhost:3000/search?search=${searchTitle}`)
       .then((res) => res.json())
       .then((result) => {
         setBooks(result);
-        setLoading(false); // stop loading
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Search error:", err);
-        setLoading(false); // stop loading even on error
+        setLoading(false);
       });
   };
+
+  // sorting function ot work
+  const handleSortByRating = (order) => {
+    setLoading(true);
+    setSortOrder(order);
+
+    fetch(`http://localhost:3000/books/sort?order=${order}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        setBooks(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Sort error:", err);
+        setLoading(false);
+      });
+  };
+  // sorting function ot work
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
@@ -35,7 +56,6 @@ const AllBooks = () => {
         All Books
       </h2>
 
-      {/* Search Bar */}
       <form onSubmit={handleSearch}>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-8">
           <input
@@ -50,12 +70,24 @@ const AllBooks = () => {
           >
             Search
           </button>
+
+          {/* Dropdown for sorting */}
+          <select
+            value={sortOrder}
+            onChange={(e) => handleSortByRating(e.target.value)}
+            className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600 transition-all duration-200"
+          >
+            <option value="desc">High to Low ⬇</option>
+            <option value="asc">Low to High ⬆</option>
+          </select>
+          {/* Dropdown for sorting */}
+
         </div>
       </form>
 
-      {/* Loading or Table */}
+      {/* Loading for Table data */}
       {loading ? (
-        <p className="text-center text-gray-500 font-medium">Searching...</p>
+        <p className="text-center text-gray-500 font-medium">Loading...</p>
       ) : (
         <AllBooksTable books={books} />
       )}

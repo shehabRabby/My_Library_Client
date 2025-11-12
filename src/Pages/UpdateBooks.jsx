@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 const UpdateBooks = () => {
   const data = useLoaderData();
-   const { user } = useContext(AuthContext);
-  const book = data.result || data; // handle both formats
+  const { user } = useContext(AuthContext);
+  const book = data.result || data; 
 
- const handleUpdateBook = (e) => {
+  const handleUpdateBook = (e) => {
     e.preventDefault();
     const formData = {
       title: e.target.title.value,
@@ -30,18 +31,20 @@ const UpdateBooks = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Update Books successfully")
+        toast("Good Job Successfully Updated!", {
+          icon: "👏",
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
-
-
   return (
     <div>
+      <div>
+        <Toaster />
+      </div>
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border-violet-500 border-1 mt-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
           Update Book

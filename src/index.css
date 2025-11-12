@@ -2,8 +2,8 @@
 @plugin "daisyui";
 
 
-/* modified class */
+ @plugin "daisyui" {
+   themes: light --default, dark --prefersdark;
+ }
 
-/* .clasName {
-    @apply tailwind class dibo  
-} */
+@custom-variant dark (&:where([data-theme=dark],[data-theme=dark]*));
