@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const UpdateBooks = () => {
   const data = useLoaderData();
   const { user } = useContext(AuthContext);
-  const book = data.result || data; 
+  const book = data.result || data;
 
   const handleUpdateBook = (e) => {
     e.preventDefault();

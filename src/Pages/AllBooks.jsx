@@ -80,12 +80,12 @@ const AllBooks = () => {
             <option value="desc">High to Low ⬇</option>
             <option value="asc">Low to High ⬆</option>
           </select>
-          {/* Dropdown for sorting */}
+       
 
         </div>
       </form>
 
-      {/* Loading for Table data */}
+     
       {loading ? (
         <p className="text-center text-gray-500 font-medium">Loading...</p>
       ) : (

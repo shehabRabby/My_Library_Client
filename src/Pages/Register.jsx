@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import { useNavigate } from "react-router";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";

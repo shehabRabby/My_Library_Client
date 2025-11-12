@@ -71,14 +71,7 @@ const AllBooksTable = ({ books, loading }) => {
                     <FaStar />
                   </div>
                 </td>
-                {/* <td className="block md:table-cell py-2 px-3 text-center">
-                  <Link
-                    to={`/book-details/${book._id}`}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded-lg font-medium transition-colors mt-2 md:mt-0 cursor-pointer"
-                  >
-                    View Details
-                  </Link>
-                </td> */}
+
                 <td className="block md:table-cell py-2 px-3 text-center">
                   <div className="flex justify-center gap-2 flex-wrap">
                     <Link

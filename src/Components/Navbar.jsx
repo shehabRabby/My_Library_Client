@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <div className="bg-violet-800 text-white shadow-md">
       <div className="max-w-7xl mx-auto navbar px-4">
-        {/* Logo + Hamburger */}
+        {/* Logo and Hamburger */}
         <div className="navbar-start flex items-center gap-3">
           <NavLink to="/" className="flex items-center gap-3">
             <img
@@ -56,7 +56,7 @@ const Navbar = () => {
             </span>
           </NavLink>
 
-          {/* Hamburger menu for small/medium devices */}
+          {/* Hamburger */}
           <div className="lg:hidden ml-2">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost">
@@ -84,6 +84,9 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink to="/all-book" className={navLinkClass}>
                   All Books
+                </NavLink>
+                <NavLink to="/about-us" className={navLinkClass}>
+                  About-us
                 </NavLink>
                 <NavLink to="/add-books" className={navLinkClass}>
                   Add Books
@@ -123,6 +126,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/all-book" className={navLinkClass}>
               All Books
+            </NavLink>
+            <NavLink to="/about-us" className={navLinkClass}>
+              About-us
             </NavLink>
             <NavLink to="/add-books" className={navLinkClass}>
               Add Books

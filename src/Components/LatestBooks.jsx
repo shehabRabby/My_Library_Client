@@ -1,10 +1,9 @@
-import React from 'react';
-import BookCard from './BookCard';
+import React from "react";
+import BookCard from "./BookCard";
 
 const LatestBooks = ({ data }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      {/* Section Title */}
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-violet-700">
           Latest Books Collection

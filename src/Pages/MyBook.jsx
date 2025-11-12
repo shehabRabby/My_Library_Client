@@ -15,10 +15,10 @@ const MyBook = () => {
   // Fetch user's books
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:3000/my-book?email=${user.email}`,{
+    fetch(`http://localhost:3000/my-book?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
-      }
+      },
     })
       .then((res) => res.json())
       .then((data) => {

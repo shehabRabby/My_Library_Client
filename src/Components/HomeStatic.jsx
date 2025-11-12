@@ -1,16 +1,21 @@
 import React from "react";
+import fantasyImg from "../assets/fantasy.png";
+import scienceImg from "../assets/since.png";
+import mistryImg from "../assets/mistry.png";
+import romanceImg from "../assets/romance.png";
+import whitehere from "../assets/crimson.png";
 
 const genres = [
-  { name: "Fantasy", image: "/images/fantasy.png" },
-  { name: "Science Fiction", image: "/images/scifi.png" },
-  { name: "Mystery", image: "/images/mystery.png" },
-  { name: "Romance", image: "/images/romance.png" },
+  { name: "Fantasy", image: fantasyImg },
+  { name: "Science Fiction", image: scienceImg },
+  { name: "Mystery", image: mistryImg },
+  { name: "Romance", image: romanceImg },
 ];
 
 const featuredBook = {
   title: "The Crimson Heir",
   author: "Isabella Moore",
-  image: "/images/crimson-heir.png",
+  image: whitehere,
   description:
     "Born into exile, a royal child discovers her bloodline carries a curse that destroyed her kingdom. To reclaim her throne, she must tame the fire within and navigate a world of intrigue, betrayal, and hidden magic.",
 };

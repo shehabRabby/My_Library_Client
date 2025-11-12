@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import LatestBooks from "../Components/LatestBooks";
 import { Link } from "react-router"; // updated import
-import book1 from "../assets/2.png";
-import book2 from "../assets/2.png";
-import book3 from "../assets/2.png";
-import book4 from "../assets/2.png";
+import book1 from "../assets/crimson.png";
+import book2 from "../assets/since.png";
+import book3 from "../assets/mistry2.png";
+import book4 from "../assets/fantasy.png";
 import HomeStatic from "../Components/HomeStatic";
 
 const bannerImages = [book1, book2, book3, book4];
@@ -13,7 +13,6 @@ const bannerImages = [book1, book2, book3, book4];
 const Home = () => {
   const data = useLoaderData();
   const [currentIndex, setCurrentIndex] = useState(0);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,7 +54,7 @@ const Home = () => {
           </div>
 
           {/* Banner Animation */}
-          {/* <div className="md:w-1/2 mt-20 lg:mt-10 md:mt-0 flex justify-center">
+          <div className="md:w-1/2 mt-20 lg:mt-10 md:mt-0 flex justify-center">
             <div className="w-64 h-64 bg-white/20 rounded-xl animate-bounce shadow-2xl flex items-center justify-center overflow-hidden">
               <img
                 src={bannerImages[currentIndex]}
@@ -63,7 +62,7 @@ const Home = () => {
                 className=" p-5 object-contain transition-all duration-700"
               />
             </div>
-          </div> */}
+          </div>
         </div>
 
         {/* Animated Background Shapes */}
