@@ -38,12 +38,12 @@ const Home = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start cursor-pointer">
               <Link
                 to="/all-book"
-                className="bg-white text-violet-700 font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-100 transition"
+                className="bg-white border border-white text-purple-600 font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-violet-700 transition"
               >
-                All Books
+                All Book
               </Link>
               <Link
                 to="/add-books"
