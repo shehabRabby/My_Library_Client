@@ -89,7 +89,7 @@ const AllBooks = () => {
       {loading ? (
         <p className="text-center text-gray-500 font-medium">Loading...</p>
       ) : (
-        <AllBooksTable books={books} />
+        <AllBooksTable books={books} loading={loading} />
       )}
     </div>
   );

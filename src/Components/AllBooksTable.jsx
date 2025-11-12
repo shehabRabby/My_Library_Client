@@ -2,11 +2,10 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 
-const AllBooksTable = ({ books }) => {
+const AllBooksTable = ({ books, loading }) => {
   return (
     <div className="w-full p-4 md:p-6 bg-gray-50 rounded-lg shadow-lg overflow-x-auto">
       <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
-        {/* for large device */}
         <thead className="hidden md:table-header-group bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
           <tr>
             <th className="py-3 px-4 text-left text-sm font-semibold uppercase tracking-wider">
@@ -31,7 +30,13 @@ const AllBooksTable = ({ books }) => {
         </thead>
 
         <tbody className="bg-white divide-y divide-gray-200">
-          {books.length === 0 ? (
+          {loading ? (
+            <tr>
+              <td colSpan="6" className="py-10 text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-indigo-600 mx-auto"></div>
+              </td>
+            </tr>
+          ) : books.length === 0 ? (
             <tr>
               <td colSpan="6" className="py-4 px-4 text-center text-gray-500">
                 No books available
@@ -43,7 +48,6 @@ const AllBooksTable = ({ books }) => {
                 key={book._id}
                 className="hover:bg-gray-100 transition-colors block md:table-row mb-4 md:mb-0 rounded-lg"
               >
-                {/* for mobile */}
                 <td className="block md:table-cell py-2 px-3 text-gray-700">
                   <span className="font-semibold md:hidden">#:</span>{" "}
                   {index + 1}

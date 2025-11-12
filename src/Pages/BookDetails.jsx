@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const BookDetails = () => {
   const data = useLoaderData();
-  const book = data.result || data; // handle both formats
+  const book = data.result || data;
   const navigate = useNavigate();
 
   const handleDelete = () => {
@@ -27,7 +27,7 @@ const BookDetails = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            navigate('/all-book')
+            navigate("/all-book");
             Swal.fire({
               title: "Deleted!",
               text: "Book has been deleted.",
@@ -43,11 +43,8 @@ const BookDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-10 px-4 md:px-10">
-      {/* Main Container */}
       <div className="max-w-5xl w-full bg-white rounded-2xl shadow-lg overflow-hidden">
-        {/* Top Section */}
         <div className="flex flex-col md:flex-row">
-          {/* Book Cover */}
           <div className="w-full md:w-1/2 flex justify-center items-center bg-gray-100">
             <img
               src={book.coverImage}
@@ -94,7 +91,6 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* Bottom Section */}
         <div className="border-t border-gray-200 mt-6 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
           <div>
             <p className="text-gray-500">Format</p>
