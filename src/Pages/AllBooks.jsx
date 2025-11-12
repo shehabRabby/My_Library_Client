@@ -35,7 +35,7 @@ const AllBooks = () => {
     setLoading(true);
     setSortOrder(order);
 
-    fetch(`http://localhost:3000/books/sort?order=${order}`)
+    fetch(`http://localhost:3000/booksSort/sort?order=${order}`)
       .then((res) => {
         return res.json();
       })
@@ -48,7 +48,7 @@ const AllBooks = () => {
         setLoading(false);
       });
   };
-  // sorting function ot work
+
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
