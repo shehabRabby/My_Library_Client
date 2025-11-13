@@ -14,7 +14,7 @@ const bannerImages = [book1, book2, book3, book4];
 const Home = () => {
   const data = useLoaderData();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const {user} = use(AuthContext);
+  const { user } = use(AuthContext);
   // console.log(user)
 
   useEffect(() => {
