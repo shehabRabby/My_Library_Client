@@ -1,9 +1,10 @@
 import React from "react";
-import fantasyImg from "../assets/fantasy.png";
-import scienceImg from "../assets/since.png";
-import mistryImg from "../assets/mistry.png";
-import romanceImg from "../assets/romance.png";
-import whitehere from "../assets/crimson.png";
+import fantasyImg from "../assets/new4.png";
+import scienceImg from "../assets/new2.png";
+import mistryImg from "../assets/new1.png";
+import romanceImg from "../assets/new3.png";
+import whitehere from "../assets/new7.png";
+import { Link } from "react-router";
 
 const genres = [
   { name: "Fantasy", image: fantasyImg },
@@ -53,7 +54,7 @@ const HomeStatic = () => {
           <img
             src={featuredBook.image}
             alt={featuredBook.title}
-            className="w-64 h-80 object-cover rounded-lg shadow-xl"
+            className="w-100 h-80 object-cover rounded-lg shadow-xl"
           />
         </div>
         <div className="md:w-1/2 text-center md:text-left">
@@ -61,10 +62,10 @@ const HomeStatic = () => {
             {featuredBook.title}
           </h3>
           <p className="text-gray-600 mb-4 italic">by {featuredBook.author}</p>
-          <p className="text-gray-700">{featuredBook.description}</p>
-          <button className="mt-6 px-6 py-3 bg-violet-700 text-white rounded-lg hover:bg-violet-800 transition">
+          <p className="text-gray-700 mb-4">{featuredBook.description}</p>
+          <Link to='/all-book' className="mt-6 px-6 py-3 bg-violet-700 text-white rounded-lg hover:bg-violet-800 transition cursor-pointer">
             Read More
-          </button>
+          </Link>
         </div>
       </section>
     </div>

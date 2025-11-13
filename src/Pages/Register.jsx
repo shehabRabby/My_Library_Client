@@ -78,11 +78,11 @@ const Register = () => {
         {/* Left Side - Text Section */}
         <div className="flex flex-col justify-center items-start w-full md:w-1/2 px-10 md:px-20 py-16 space-y-8">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-            JOIN THE <br />
-            <span className="text-black">CREATORS AROUND</span>
+            CONNECT WITH <br />
+            <span className="text-black">LEARNERS AND</span>
             <br />
             <span className="bg-gradient-to-r from-lime-400 to-green-400 text-transparent bg-clip-text">
-              THE WORLD.
+              THINKERS WORLDWIDE.
             </span>
           </h1>
 
@@ -98,15 +98,15 @@ const Register = () => {
 
           <div className="bg-black text-white p-6 rounded-2xl max-w-md">
             <p className="text-sm leading-relaxed">
-              Over <span className="font-semibold">3 million</span> creators
-              joined our growing community — building, sharing, and inspiring
-              together every day.
+              Over <span className="font-semibold">3 million</span> learners and
+              thinkers connect here daily — sharing insights, building
+              knowledge, and sparking ideas.
             </p>
           </div>
         </div>
 
         {/* Right Side - Register Form */}
-        <div className="relative w-full md:w-1/2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1000&q=80')] bg-cover bg-center">
+        <div className="relative w-full md:w-1/2 flex items-center justify-center bg-[url('https://i.ibb.co.com/KjtDVYXN/photo-1544640808-32ca72ac7f37.jpg')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
           <div className="relative bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8 w-[90%] max-w-md z-10">

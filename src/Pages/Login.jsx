@@ -47,13 +47,14 @@ const Login = () => {
       {/* Left Section */}
       <div className="flex flex-col justify-center items-start w-full md:w-1/2 px-10 md:px-20 py-16 space-y-8">
         <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-          POWERED BY <br />
-          <span className="text-black">CREATORS AROUND</span>
+          LOG IN TO <br />
+          <span className="text-black">YOUR HUB OF</span>
           <br />
           <span className="bg-gradient-to-r from-lime-400 to-green-400 text-transparent bg-clip-text">
-            THE WORLD.
+            KNOWLEDGE.
           </span>
         </h1>
+
         <p className="text-gray-500">
           Don’t have an account?{" "}
           <a
@@ -66,8 +67,8 @@ const Login = () => {
       </div>
 
       {/* Right Section */}
-      <div className="relative w-full md:w-1/2 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1000&q=80')] bg-cover bg-center">
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      <div className="relative w-full md:w-1/2 flex items-center justify-center bg-[url('https://i.ibb.co/ZpybRbM4/photo-1568667256549-094345857637.jpg')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
         <div className="relative bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8 w-[90%] max-w-md z-10">
           <h2 className="text-center text-2xl font-semibold text-gray-900 mb-6">
             Login to your account
@@ -116,6 +117,16 @@ const Login = () => {
               Continue with Google
             </span>
           </button>
+
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Already have an account?{" "}
+            <a
+              href="/sign-up"
+              className="font-semibold text-lime-500 hover:underline"
+            >
+              Register
+            </a>
+          </p>
         </div>
       </div>
     </div>

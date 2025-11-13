@@ -2,14 +2,17 @@ import React, { useState, useEffect, use } from "react";
 import { useLoaderData } from "react-router";
 import LatestBooks from "../Components/LatestBooks";
 import { Link } from "react-router"; // updated import
-import book1 from "../assets/crimson.png";
-import book2 from "../assets/since.png";
-import book3 from "../assets/mistry2.png";
-import book4 from "../assets/fantasy.png";
+import book1 from "../assets/new5.png";
+import book2 from "../assets/new2.png";
+import book3 from "../assets/new3.png";
+import book4 from "../assets/new4.png";
+import book5 from "../assets/new7.png";
+import book6 from "../assets/new8.png";
+
 import HomeStatic from "../Components/HomeStatic";
 import { AuthContext } from "../Context/AuthProvider";
 
-const bannerImages = [book1, book2, book3, book4];
+const bannerImages = [book1, book2, book3, book4, book5, book6];
 
 const Home = () => {
   const data = useLoaderData();
@@ -62,7 +65,7 @@ const Home = () => {
               <img
                 src={bannerImages[currentIndex]}
                 alt="Book Banner"
-                className=" p-5 object-contain transition-all duration-700"
+                className=" p-5 object-contain transition-all duration-50"
               />
             </div>
           </div>

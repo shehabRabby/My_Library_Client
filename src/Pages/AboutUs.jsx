@@ -18,7 +18,7 @@ const AboutUs = () => {
       {/* Our Story Section */}
       <div className="max-w-4xl grid md:grid-cols-2 gap-12 items-center mb-16">
         <img
-          src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80"
+          src="https://i.ibb.co.com/KjtDVYXN/photo-1544640808-32ca72ac7f37.jpg"
           alt="Bookshelf"
           className="rounded-lg shadow-lg"
         />
