@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const MyBook = () => {
   const { user } = useContext(AuthContext);
+  // console.log(user)
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +32,7 @@ const MyBook = () => {
       });
   }, [user]);
 
-  // 🔥 Handle delete
+  // Book delete
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -121,7 +122,7 @@ const MyBook = () => {
         My Books
       </h2>
 
-      <AllBooksTable books={booksWithTooltips} loading={loading} />
+      <AllBooksTable user={user} books={booksWithTooltips} loading={loading} />
     </div>
   );
 };

@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useLoaderData } from "react-router";
 import AllBooksTable from "../Components/AllBooksTable";
+import { AuthContext } from "../Context/AuthProvider";
 
 const AllBooks = () => {
   const data = useLoaderData();
   const [books, setBooks] = useState(data);
   const [loading, setLoading] = useState(false);
-  const [sortOrder, setSortOrder] = useState("desc"); // default descending
+  const [sortOrder, setSortOrder] = useState("desc"); 
+  const {user} = use(AuthContext);
+  // console.log(user);
 
+  // search 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchTitle = e.target.title.value.trim();
+    const searchTitle = e.target.title.value.trim(); 
 
     if (searchTitle === "") {
       setBooks(data);
@@ -30,7 +34,7 @@ const AllBooks = () => {
       });
   };
 
-  // sorting function ot work
+  // Sort by rating
   const handleSortByRating = (order) => {
     setLoading(true);
     setSortOrder(order);

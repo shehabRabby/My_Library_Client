@@ -9,6 +9,7 @@ const BookDetails = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(true);
   const { user } = use(AuthContext);
+  // console.log(user)
 
   useEffect(() => {
     fetch(`http://localhost:3000/books/${id}`, {
@@ -77,6 +78,7 @@ const BookDetails = () => {
           </div>
         </div>
 
+        {/* Extra Book Info */}
         <div className="border-t border-gray-200 mt-6 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
           <div>
             <p className="text-gray-500">Format</p>
@@ -89,6 +91,70 @@ const BookDetails = () => {
           <div>
             <p className="text-gray-500">Rating</p>
             <p className="font-semibold">{book.rating} / 5</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Comment Section */}
+      <div className="mt-10 max-w-5xl w-full bg-white rounded-2xl shadow-md p-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">
+          Comments
+        </h2>
+
+        {/* Comment Input Box */}
+        <div className="flex items-start gap-3 mb-6">
+          <img
+            src={user?.photoURL || "https://i.ibb.co/3N1RzRj/default-user.png"}
+            alt="User Avatar"
+            className="w-10 h-10 rounded-full border border-gray-300 object-cover"
+          />
+          <div className="flex-1">
+            <textarea
+              placeholder="Write your thoughts about this book..."
+              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              rows="3"
+            ></textarea>
+            <div className="flex justify-end mt-3">
+              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition-all">
+                Post Comment
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Comments Display */}
+        <div className="space-y-4">
+          {/* sample Comment */}
+          <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+            <img
+              src="https://i.ibb.co/3N1RzRj/default-user.png"
+              alt="User Avatar"
+              className="w-10 h-10 rounded-full border border-gray-300 object-cover"
+            />
+            <div>
+              <h4 className="font-semibold text-gray-800">Jane Doe</h4>
+              <p className="text-gray-600 text-sm mt-1">
+                This book was honestly such a beautiful read — the character
+                development was *chef’s kiss*!
+              </p>
+              <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
+            <img
+              src="https://i.ibb.co/3N1RzRj/default-user.png"
+              alt="User Avatar"
+              className="w-10 h-10 rounded-full border border-gray-300 object-cover"
+            />
+            <div>
+              <h4 className="font-semibold text-gray-800">Alex Carter</h4>
+              <p className="text-gray-600 text-sm mt-1">
+                I loved how immersive the world-building was. Totally worth the
+                read!
+              </p>
+              <p className="text-xs text-gray-400 mt-1">1 day ago</p>
+            </div>
           </div>
         </div>
       </div>

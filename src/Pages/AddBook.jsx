@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const AddBook = () => {
   const { user } = useContext(AuthContext);
+  // console.log(user)
 
   const handleAddBook = (e) => {
     e.preventDefault();

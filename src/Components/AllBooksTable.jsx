@@ -1,8 +1,11 @@
-import React from "react";
+import React, { use } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router";
+import { AuthContext } from "../Context/AuthProvider";
 
-const AllBooksTable = ({ books, loading }) => {
+const AllBooksTable = ({ books, loading}) => {
+  const {user} = use(AuthContext)
+  // console.log(user)
   return (
     <div className="w-full p-4 md:p-6 bg-gray-50 rounded-lg shadow-lg overflow-x-auto">
       <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
