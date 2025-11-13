@@ -16,7 +16,7 @@ const MyBook = () => {
   // Fetch user's books
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:3000/my-book?email=${user.email}`, {
+    fetch(`https://my-library-orpin.vercel.app/my-book?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -44,7 +44,7 @@ const MyBook = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/books/${id}`, {
+        fetch(`https://my-library-orpin.vercel.app/books/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

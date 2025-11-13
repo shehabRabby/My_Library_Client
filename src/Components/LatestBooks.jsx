@@ -1,7 +1,7 @@
 import React from "react";
 import BookCard from "./BookCard";
 
-const LatestBooks = ({ data,user}) => {
+const LatestBooks = ({ data}) => {
   // console.log(user)
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">

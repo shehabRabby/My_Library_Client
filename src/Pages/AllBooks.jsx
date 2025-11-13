@@ -7,14 +7,14 @@ const AllBooks = () => {
   const data = useLoaderData();
   const [books, setBooks] = useState(data);
   const [loading, setLoading] = useState(false);
-  const [sortOrder, setSortOrder] = useState("desc"); 
-  const {user} = use(AuthContext);
+  const [sortOrder, setSortOrder] = useState("desc");
+  const { user } = use(AuthContext);
   // console.log(user);
 
-  // search 
+  // search
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchTitle = e.target.title.value.trim(); 
+    const searchTitle = e.target.title.value.trim();
 
     if (searchTitle === "") {
       setBooks(data);
@@ -22,7 +22,7 @@ const AllBooks = () => {
     }
 
     setLoading(true);
-    fetch(`http://localhost:3000/search?search=${searchTitle}`)
+    fetch(`https://my-library-orpin.vercel.app/search?search=${searchTitle}`)
       .then((res) => res.json())
       .then((result) => {
         setBooks(result);
@@ -39,7 +39,7 @@ const AllBooks = () => {
     setLoading(true);
     setSortOrder(order);
 
-    fetch(`http://localhost:3000/booksSort/sort?order=${order}`)
+    fetch(`https://my-library-orpin.vercel.app/booksSort/sort?order=${order}`)
       .then((res) => {
         return res.json();
       })
@@ -52,7 +52,6 @@ const AllBooks = () => {
         setLoading(false);
       });
   };
-
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
@@ -84,12 +83,9 @@ const AllBooks = () => {
             <option value="desc">High to Low ⬇</option>
             <option value="asc">Low to High ⬆</option>
           </select>
-       
-
         </div>
       </form>
 
-     
       {loading ? (
         <p className="text-center text-gray-500 font-medium">Loading...</p>
       ) : (

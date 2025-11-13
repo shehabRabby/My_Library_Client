@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:3000/latest-books"),
+        loader: () => fetch("https://my-library-orpin.vercel.app/latest-books"),
       },
       {
         path: "/about-us",
@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
       {
         path: "/all-book",
         element: <AllBooks></AllBooks>,
-        loader: () => fetch("http://localhost:3000/books"),
+        loader: () => fetch("https://my-library-orpin.vercel.app/books"),
       },
       {
         path: "/update-books/:id",
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/books/${params.id}`),
+          fetch(`https://my-library-orpin.vercel.app/books/${params.id}`),
       },
       {
         path: "/my-books",

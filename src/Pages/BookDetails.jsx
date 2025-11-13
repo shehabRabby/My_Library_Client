@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { FaStar } from "react-icons/fa";
-import Swal from "sweetalert2";
+
 import { AuthContext } from "../Context/AuthProvider";
 
 const BookDetails = () => {
@@ -9,10 +9,9 @@ const BookDetails = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(true);
   const { user } = use(AuthContext);
-  // console.log(user)
 
   useEffect(() => {
-    fetch(`http://localhost:3000/books/${id}`, {
+    fetch(`https://my-library-orpin.vercel.app/books/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -135,7 +134,7 @@ const BookDetails = () => {
               <h4 className="font-semibold text-gray-800">Jane Doe</h4>
               <p className="text-gray-600 text-sm mt-1">
                 This book was honestly such a beautiful read — the character
-                development was *chef’s kiss*!
+                development!
               </p>
               <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
             </div>

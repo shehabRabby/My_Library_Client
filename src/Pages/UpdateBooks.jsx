@@ -23,7 +23,7 @@ const UpdateBooks = () => {
       userName: e.target.name.value,
     };
 
-    fetch(`http://localhost:3000/books/${book._id}`, {
+    fetch(`https://my-library-orpin.vercel.app/books/${book._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

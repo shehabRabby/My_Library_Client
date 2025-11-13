@@ -74,7 +74,7 @@ const Home = () => {
       </section>
 
       {/* Latest Books */}
-      <LatestBooks user={user} data={data} />
+      <LatestBooks data={data} />
 
       <HomeStatic></HomeStatic>
     </div>
