@@ -11,7 +11,7 @@ Fast, secure, and fully responsive — built to make managing your favorite book
 
 ## 🌐 Live Site
 
-🔗 [https://book-haven01.netlify.app/]
+🔗 [https://book-haven2.netlify.app/]
 
 ---
 
