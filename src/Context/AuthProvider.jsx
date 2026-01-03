@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -7,9 +7,24 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  // Initialize theme from localStorage
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  // --- FIXED: Added async/await and manual state update ---
+  const updateUserProfile = async (name, photo) => {
+    // 1. Update the data on Firebase servers
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo
+    });
+
+    // 2. IMPORTANT: Manually update the local 'user' state.
+    // We spread the currentUser into a new object to force React to re-render components.
+    setUser({
+      ...auth.currentUser,
+      displayName: name,
+      photoURL: photo
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -19,7 +34,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // apply theme to HTML tag when it changes
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -39,7 +53,8 @@ const AuthProvider = ({ children }) => {
     loading, 
     theme, 
     toggleTheme, 
-    handleLogout 
+    handleLogout,
+    updateUserProfile 
   };
 
   return (

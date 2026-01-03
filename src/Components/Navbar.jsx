@@ -2,7 +2,8 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import logo from "../assets/logo.png";
-import { FaUserCircle, FaSignOutAlt, FaBook } from "react-icons/fa";
+// FIX: Changed FaLayout to FaThLarge (which exists in Font Awesome)
+import { FaUserCircle, FaSignOutAlt, FaThLarge } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, handleLogout, theme, toggleTheme } = useContext(AuthContext);
@@ -44,8 +45,8 @@ const Navbar = () => {
               {user && (
                 <>
                   <div className="divider opacity-10 my-0"></div>
-                  <NavLink to="/add-books" className={navLinkClass}>Add Books</NavLink>
-                  <NavLink to="/my-books" className={navLinkClass}>My Books</NavLink>
+                  <NavLink to="/dashboard" className={navLinkClass} end>Dashboard</NavLink>
+                  <NavLink to="/dashboard/add-books" className={navLinkClass}>Add Books</NavLink>
                 </>
               )}
             </ul>
@@ -65,12 +66,11 @@ const Navbar = () => {
             <NavLink to="/" className={navLinkClass}>Home</NavLink>
             <NavLink to="/all-book" className={navLinkClass}>All Books</NavLink>
             <NavLink to="/about-us" className={navLinkClass}>About Us</NavLink>
-              <NavLink to="/support-us" className={navLinkClass}>Support Us</NavLink>
+            <NavLink to="/support-us" className={navLinkClass}>Support Us</NavLink>
 
             {user && (
               <>
-                <NavLink to="/add-books" className={navLinkClass}>Add Books</NavLink>
-                <NavLink to="/my-books" className={navLinkClass}>My Books</NavLink>
+                <NavLink to="/dashboard" className={navLinkClass}>Dashboard</NavLink>
               </>
             )}
           </ul>
@@ -98,12 +98,24 @@ const Navbar = () => {
                     <p className="text-[10px] font-black opacity-40 uppercase tracking-widest">Curator</p>
                     <p className="font-bold truncate">{user?.displayName || "Reader"}</p>
                 </div>
-                <li><Link to="/my-profile" className="py-3 font-bold hover:text-brand-primary transition-colors"><FaUserCircle /> My Profile</Link></li>
+                
+                {/* FIX: Applied FaThLarge here and ensured alignment */}
+                <li>
+                  <Link to="/dashboard" className="py-3 px-4 font-bold hover:text-brand-primary transition-colors flex items-center gap-3 rounded-xl">
+                    <FaThLarge className="text-brand-primary" /> Dashboard Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/my-profile" className="py-3 px-4 font-bold hover:text-brand-primary transition-colors flex items-center gap-3 rounded-xl">
+                    <FaUserCircle className="text-brand-primary" /> My Profile
+                  </Link>
+                </li>
+                
                 <div className="divider my-1 opacity-10"></div>
                 <li>
                   <button 
                     onClick={onLogout}
-                    className="py-3 bg-error/10 text-error font-black hover:bg-error hover:text-error-content transition-all rounded-xl"
+                    className="py-3 px-4 bg-error/10 text-error font-black hover:bg-error hover:text-error-content transition-all rounded-xl w-full flex items-center gap-3"
                   >
                     <FaSignOutAlt /> Sign Out
                   </button>
