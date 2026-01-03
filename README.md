@@ -1,90 +1,140 @@
-                       # 📚 Book Haven
+# 📚 HAVEN. | Digital Library Management System
 
-**Book Haven** is a modern digital library where readers can explore, add, update, and manage books online.  
-It’s built for speed, style, and simplicity — combining React, Firebase, MongoDB, and Tailwind CSS for a smooth user experience.
-
-Book Haven is a full-stack digital library web app where users can explore, add, update, and manage books in one place.
-It features Firebase authentication, MongoDB data storage, and a clean React + Tailwind UI.
-Fast, secure, and fully responsive — built to make managing your favorite books effortless and fun.
+**HAVEN** is a sophisticated, high-performance **library management dashboard** designed for curators and avid readers. It offers a seamless way to archive, manage, and explore literary collections with a strong focus on **modern UI/UX** and **real-time data synchronization**.
 
 ---
 
-## 🌐 Live Site
+## 🌐 Live Experience
 
-🔗 [https://book-haven2.netlify.app/]
-
----
-
-## 🚀 Tech Stack
-
-- ⚛️ **React + React Router DOM** – Single Page Application (SPA)
-- 🔥 **Firebase Authentication** – Secure user login & Google sign-in
-- 🍃 **MongoDB + Express (API)** – Store and manage all book data
-- 🧁 **Tailwind CSS + DaisyUI** – Clean, responsive UI
-- 💨 **React Hot Toast** – Beautiful custom alerts
-- ⚙️ **Axios + NPM Packages** – Fast and reliable data handling
+🔗 **Live Demo:** *Replace with your actual Vercel/Netlify link*
 
 ---
 
-## ✨ Features
+## ⚡ Core Technologies
 
-- 📘 Explore all books in a dynamic library view
-- 🧾 Add, update, and delete books (CRUD operations)
-- 🔐 Private routes protected by Firebase authentication
-- 💬 Real-time comments on book details page
-- ⭐ Sort and filter books by rating
-- 🌗 Light/Dark theme toggle
-- 🪄 Toast messages for every action — no default alerts
-- ⚡ Fully responsive on mobile, tablet, and desktop
+### 🎨 Frontend
+
+* **React 18** – Functional components with Hooks (`useState`, `useEffect`, Context API)
+* **Tailwind CSS** – Utility-first styling for a fully custom design
+* **DaisyUI** – Accessible UI components (buttons, modals, forms)
+* **React Router (v7)** – Advanced routing with **Protected Dashboard Routes**
+* **React Icons** – Professional icon packs (FontAwesome, Lucide)
+
+### 🔐 Backend & Security
+
+* **Node.js & Express** – Scalable REST API architecture
+* **MongoDB** – Flexible NoSQL database for book schemas
+* **Firebase Authentication** – Secure Google & Email/Password login
+
+### 🧰 Utilities
+
+* **SweetAlert2** – Animated confirmation & alert dialogs
+* **React Toastify** – Non-intrusive notifications for CRUD actions
+* **React Tooltip** – Interactive hover previews for book covers
 
 ---
 
-## 📸Pages Overview
+## ✨ Key Features
 
-🏠 Home: Banner, latest books, and featured sections
-📖 All Books: View and sort all available books
-➕ Add Book: Add new books (private route)
-📚 My Books: Manage your personal collection
-💬 Book Details: View full details & comments
-🔑 Login/Register: Firebase-auth-based access
+* **Curator Dashboard** – High-end workspace with statistics and quick actions
+* **Glassmorphic UI** – Modern blur, gradient, and dark-themed sidebar design
+* **Full CRUD System** – Add, update, and delete books with confirmation prompts
+* **Responsive Sidebar** – Collapsible desktop sidebar & mobile drawer support
+* **Real-time Search & Filter** – Instantly locate books in large collections
+* **Protected Archives** – Only authenticated users can manage their books
+* **Dynamic Banner Slider** – Interactive hero section with auto-play & controls
 
+---
 
-## 🚀 Run Locally
+## 📸 Dashboard Overview
 
-Follow these steps to run the project on your local machine:
+| Section               | Description                                       |
+| --------------------- | ------------------------------------------------- |
+| **Overview**          | Quick stats of total volumes & cloud sync status  |
+| **Managed Archives**  | Modern data table with hover previews & actions   |
+| **Add to Collection** | Clean, focused form to add new books              |
+| **My Profile**        | Firebase-synced, verified user profile management |
 
-1. Clone the Repository
+---
+
+## 🚀 Installation & Local Setup
+
+### 1️⃣ Clone the Repository
+
 ```bash
-git clone https://github.com/your-username/your-project.git
-cd your-project
+git clone https://github.com/yourusername/book-haven.git
+cd book-haven
+```
 
-2. Install Dependencies
-# Frontend
+### 2️⃣ Install Dependencies
+
+Install packages for both **Client** and **Server**.
+
+```bash
+# Frontend dependencies
 npm install
 
-# Backend
-cd backend
+# Server dependencies
+cd server
 npm install
-cd ..
+```
 
-3. Setup Environment Variables
+### 3️⃣ Environment Configuration
 
-Create a .env file in the root directory and add your Firebase & MongoDB config:
+Create a `.env` file in the **Client root** and add Firebase credentials:
 
-REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-REACT_APP_FIREBASE_APP_ID=your_app_id
+```env
+VITE_apiKey=your_api_key
+VITE_authDomain=your_auth_domain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storage_bucket
+VITE_messagingSenderId=your_sender_id
+VITE_appId=your_app_id
+```
 
-MONGO_URI=your_mongodb_connection_string
-4. Start Frontend & Backend Together
-Open two terminals or use a tool like concurrently:
-# Terminal 1: Start Frontend
-npm start
+For backend configuration, add MongoDB credentials:
 
-# Terminal 2: Start Backend
-cd backend
+```env
+DB_USER=your_db_user
+DB_PASS=your_db_password
+```
+
+### 4️⃣ Run the Project
+
+```bash
+# Run Client (Vite + React)
 npm run dev
 
+# Run Server (separate terminal)
+cd server
+npm start
+```
+
+---
+
+## 🛠️ Project Structure
+
+```plaintext
+src/
+├── Components/    # Reusable UI (Tables, Banners, Loaders)
+├── Context/       # AuthProvider (Firebase logic)
+├── Layouts/       # MainLayout & DashboardLayout
+├── Pages/         # Home, MyBooks, AddBooks, Login
+└── Assets/        # Images & global styles
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome and appreciated ❤️
+
+1. Fork the project
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m "Add some AmazingFeature"`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a Pull Request
+
+---
+
+✨ *Built with passion for clean UI, scalability, and real-world usability.*
