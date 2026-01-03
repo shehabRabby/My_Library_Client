@@ -1,90 +1,141 @@
-import React, { useState, useEffect, use } from "react";
-import { useLoaderData } from "react-router";
+import React, { useState, useEffect, useContext } from "react";
+import { useLoaderData, Link } from "react-router";
 import LatestBooks from "../Components/LatestBooks";
-import { Link } from "react-router";
+import HomeStatic from "../Components/HomeStatic";
+import { AuthContext } from "../Context/AuthProvider";
+import { FaArrowRight, FaChevronLeft, FaChevronRight, FaMouse } from "react-icons/fa";
+
+// Requirement: Local assets used in a structured array
 import book1 from "../assets/new5.png";
 import book2 from "../assets/new2.png";
 import book3 from "../assets/new3.png";
 import book4 from "../assets/new4.png";
 import book5 from "../assets/new7.png";
 import book6 from "../assets/new8.png";
-
-import HomeStatic from "../Components/HomeStatic";
-import { AuthContext } from "../Context/AuthProvider";
+import CategoryGrid from "../Components/Home/CategoryGrid";
+import Testimonials from "../Components/Home/Testimonials";
+import FaqSection from "../Components/Home/FaqSection";
+import Newsletter from "../Components/Home/NewsLatter";
 
 const bannerImages = [book1, book2, book3, book4, book5, book6];
 
 const Home = () => {
   const data = useLoaderData();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
+  // REQUIREMENT: Interactive (Auto control)
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    }, 2000);
+      handleNext();
+    }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
+
+  // REQUIREMENT: Interactive (Manual controls)
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
 
   return (
-    <div className="bg-base-100 text-base-content transition-colors duration-300">
-      {/* Banner Section */}
-      <section className="relative bg-gradient-to-r from-brand-primary to-brand-dark text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center justify-between">
+    <div className="bg-base-100 text-base-content min-h-screen">
+      
+      {/* REQUIREMENT: Hero Section Max height 60–70% of screen */}
+      <section className="relative h-[65vh] min-h-[500px] w-full bg-brand-primary overflow-hidden group">
+        
+        {/* Animated Background Blobs */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-brand-secondary/20 rounded-full blur-[100px] animate-blob"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
+
+        <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between z-10">
           
-          {/* Banner Text */}
-          <div className="md:w-1/2 text-center md:text-left animate-fadeIn z-10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-lg">
-              Welcome to Book Haven
+          {/* Banner Text Area */}
+          <div className="md:w-1/2 text-center md:text-left space-y-6">
+            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none animate-fadeIn">
+              Welcome to <br />
+              <span className="text-brand-secondary">Book Haven</span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 mb-6 drop-shadow-sm">
-              Explore thousands of books, discover hidden gems, and unleash your
-              imagination.
+            <p className="text-lg text-white/80 max-w-md font-medium">
+              Explore thousands of books, discover hidden gems, and unleash your imagination in our digital sanctuary.
             </p>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link
-                to="/all-book"
-                className="bg-white text-brand-primary font-bold px-8 py-3 rounded-lg hover:bg-brand-secondary hover:text-black transition-all duration-300 shadow-lg"
-              >
-                All Books
+            {/* REQUIREMENT: Interactive CTA */}
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+              <Link to="/all-book" className="flex items-center gap-2 bg-brand-secondary text-black font-black px-8 py-4 rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95">
+                ALL BOOKS <FaArrowRight />
               </Link>
-              <Link
-                to="/add-books"
-                className="bg-transparent border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white hover:text-brand-primary transition-all duration-300"
-              >
-                Create Book
+              <Link to="/add-books" className="px-8 py-4 border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/10 transition-all">
+                CREATE BOOK
               </Link>
             </div>
           </div>
 
-          {/* Banner Animation */}
-          <div className="md:w-1/2 mt-20 lg:mt-10 md:mt-0 flex justify-center z-10">
-            <div className="w-64 h-80 bg-white/10 backdrop-blur-md rounded-2xl animate-soft-bounce shadow-2xl flex items-center justify-center overflow-hidden border border-white/20">
+          {/* REQUIREMENT: Slider Display */}
+          <div className="md:w-1/2 flex justify-center relative mt-12 md:mt-0">
+            <div className="relative w-64 h-80 md:w-80 md:h-[400px] bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-8 shadow-2xl flex items-center justify-center transition-transform duration-700 hover:rotate-3">
               <img
+                key={currentIndex}
                 src={bannerImages[currentIndex]}
-                alt="Book Banner"
-                className="p-6 object-contain transition-all duration-500 transform hover:scale-110"
+                alt="Featured Book"
+                className="w-full h-full object-contain animate-fadeInScale"
               />
             </div>
           </div>
         </div>
 
-        {/* Animated Background Shapes - Matching Brand Colors */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-brand-secondary rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-brand-primary rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        {/* REQUIREMENT: Manual Control Arrows (Visible on hover) */}
+        <button onClick={handlePrev} className="absolute left-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20">
+          <FaChevronLeft size={24} />
+        </button>
+        <button onClick={handleNext} className="absolute right-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20">
+          <FaChevronRight size={24} />
+        </button>
+
+        {/* REQUIREMENT: Visual Hint to next section */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
+            <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Scroll Down</p>
+            <FaMouse className="text-brand-secondary animate-bounce" />
+        </div>
+
+        {/* Manual Progress Indicators (Dots) */}
+        <div className="absolute bottom-10 right-10 flex gap-2">
+            {bannerImages.map((_, index) => (
+                <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-brand-secondary" : "w-2 bg-white/30"}`}
+                />
+            ))}
+        </div>
       </section>
 
-      {/* Main Content Areas */}
-      <main className="max-w-7xl mx-auto">
+      {/* Main Content Area */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Latest Books */}
-        <LatestBooks data={data} />
+        <div className="py-2">
+            <LatestBooks data={data} />
+        </div>
 
-        {/* Static Sections */}
-        <div className="py-10">
+           {/* Static Sections */}
+        <div className="pb-2">
            <HomeStatic />
         </div>
+
+        <div className="py-2">
+          <CategoryGrid></CategoryGrid>
+        </div>
+
+        <div className="py-2">
+            <Testimonials></Testimonials>
+        </div>
+        <div className="py-2">
+            <FaqSection></FaqSection>
+        </div>
+        <div className="py-2">
+            <Newsletter></Newsletter>
+        </div>
+
+
+     
       </main>
     </div>
   );

@@ -6,7 +6,7 @@ const BookCard = ({ book }) => {
   const { _id, coverImage, title, rating, genre, author } = book || {};
 
   return (
-    <div className="bg-base-100 border border-base-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-[420px]">
+    <div className="bg-base-100 border border-base-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-[320px]">
       {/* Cover Image Container - Reduced Height */}
       <div className="relative h-[65%] overflow-hidden bg-base-300 rounded-t-xl">
         <img

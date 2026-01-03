@@ -11,6 +11,7 @@ import PrivateRoute from "../Context/PrivateRoute";
 import BookDetails from "../Pages/BookDetails";
 import UpdateBooks from "../Pages/UpdateBooks";
 import ErrorPage from "../Pages/ErrorPage";
+import MyProfile from "../Pages/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/my-profile",
+        element: <MyProfile></MyProfile>,
       },
       {
         path: "/add-books",
