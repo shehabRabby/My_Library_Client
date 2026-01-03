@@ -1,14 +1,14 @@
+import React, { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";
-import React, { useState } from "react";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaUserCircle, FaIdCard, FaLock, FaCameraRetro } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 
@@ -26,46 +26,28 @@ const Register = () => {
     const password = e.target.password.value;
 
     if (password.length < 6) {
-      toast.error("Password Should be at least 6 character");
+      toast.error("Security keys must be at least 6 characters");
       return;
     }
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-
-      // Update profile with displayName and photoURL
       await updateProfile(res.user, {
         displayName: name,
-        photoURL: photo || "https://i.pravatar.cc/100",
+        photoURL: photo || "https://i.ibb.co/3N1RzRj/default-user.png",
       });
       await auth.signOut();
-
-      toast.success("Register Successful! Please Login");
-      navigate("/sign-in"); // auto-login redirect
+      toast.success("Identity Created. Please Authenticate.");
+      navigate("/sign-in");
     } catch (e) {
-      console.log(e);
-      if (e.code === "auth/email-already-in-use") {
-        toast.error("User already exists in database");
-      } else if (e.code === "auth/weak-password") {
-        toast.error("At least 6 characters needed");
-      } else if (e.code === "auth/invalid-email") {
-        toast.error("Invalid email address");
-      } else if (e.code === "auth/operation-not-allowed") {
-        toast.error("Email/password accounts are not enabled");
-      } else if (e.code === "auth/network-request-failed") {
-        toast.error("Network error, please try again");
-      } else if (e.code === "auth/too-many-requests") {
-        toast.error("Too many requests, please try later");
-      } else {
-        toast.error("Something went wrong, please try again");
-      }
+      toast.error(e.message || "Archive registration failed");
     }
   };
 
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      toast.success("Login Successful");
+      toast.success("Global Identity Verified");
       navigate("/");
     } catch (err) {
       toast.error(err.message);
@@ -73,135 +55,124 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <div className="min-h-screen flex flex-col md:flex-row bg-gray-50">
-        {/* Left Side - Text Section */}
-        <div className="flex flex-col justify-center items-start w-full md:w-1/2 px-10 md:px-20 py-16 space-y-8">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-            CONNECT WITH <br />
-            <span className="text-black">LEARNERS AND</span>
-            <br />
-            <span className="bg-gradient-to-r from-lime-400 to-green-400 text-transparent bg-clip-text">
-              THINKERS WORLDWIDE.
-            </span>
-          </h1>
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] relative overflow-hidden font-sans py-12">
+      
+      {/* AMBIENT BACKGROUND */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[150px] animate-pulse"></div>
+        <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-brand-secondary/10 rounded-full blur-[150px] animate-pulse [animation-delay:2s]"></div>
+      </div>
 
-          <p className="text-gray-500">
-            Already have an account?{" "}
-            <a
-              href="/sign-in"
-              className="underline font-semibold text-gray-900 hover:text-lime-600 transition"
-            >
-              Login →
-            </a>
-          </p>
+      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 relative z-10 mx-4 shadow-2xl rounded-[3.5rem] overflow-hidden border border-white/5">
+        
+        {/* LEFT PANEL: EDITORIAL BRANDING */}
+        <div className="lg:col-span-5 bg-white p-12 md:p-16 flex flex-col justify-between space-y-12">
+          <div className="animate-fadeInLeft">
+            <div className="flex items-center gap-2 mb-8">
+              <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center text-brand-secondary">
+                <FaUserCircle size={22} />
+              </div>
+              <span className="font-black tracking-[0.3em] uppercase text-[10px]">New Curator</span>
+            </div>
 
-          <div className="bg-black text-white p-6 rounded-2xl max-w-md">
-            <p className="text-sm leading-relaxed">
-              Over <span className="font-semibold">3 million</span> learners and
-              thinkers connect here daily — sharing insights, building
-              knowledge, and sparking ideas.
+            <h1 className="text-5xl md:text-7xl font-black text-black leading-[0.9] tracking-tighter mb-8">
+              JOIN THE <br /> 
+              <span className="text-brand-primary italic">THINKERS.</span>
+            </h1>
+            
+            <p className="text-black/50 font-medium leading-relaxed max-w-xs text-lg">
+              Unlock access to a worldwide network of shared wisdom and intellectual archives.
+            </p>
+          </div>
+
+          <div className="space-y-6 animate-fadeInLeft [animation-delay:200ms]">
+            <div className="bg-gray-50 border border-gray-100 p-6 rounded-[2.5rem]">
+              <p className="text-sm font-medium text-black/70 italic">
+                "Over <span className="text-brand-primary font-black">3 million</span> curators connect here daily to build the future of knowledge."
+              </p>
+            </div>
+            
+            <p className="text-xs font-bold text-black/40 uppercase tracking-widest pl-4">
+              Registered already?{" "}
+              <Link to="/sign-in" className="text-brand-primary underline underline-offset-4 hover:text-black transition-colors ml-2">
+                Enter Sanctuary →
+              </Link>
             </p>
           </div>
         </div>
 
-        {/* Right Side - Register Form */}
-        <div className="relative w-full md:w-1/2 flex items-center justify-center bg-[url('https://i.ibb.co.com/KjtDVYXN/photo-1544640808-32ca72ac7f37.jpg')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        {/* RIGHT PANEL: REGISTRATION VAULT */}
+        <div className="lg:col-span-7 bg-[#111] p-10 md:p-16 flex flex-col justify-center">
+          <div className="w-full max-w-md mx-auto animate-fadeInRight">
+            <h2 className="text-3xl font-black text-white tracking-tight mb-2">Create Credentials</h2>
+            <p className="text-white/40 text-sm mb-10 font-medium">Define your curator profile</p>
 
-          <div className="relative bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8 w-[90%] max-w-md z-10">
-            <h2 className="text-center text-2xl font-semibold text-gray-900 mb-6">
-              Create an Account
-            </h2>
+            <form onSubmit={handleSignup} className="space-y-4">
+              {/* Floating Input: Name */}
+              <div className="relative group">
+                <FaIdCard className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-secondary transition-colors" />
+                <input type="text" name="name" required placeholder="Full Name"
+                  className="w-full pl-14 pr-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white outline-none focus:border-brand-secondary transition-all font-medium placeholder:text-white/20" />
+              </div>
 
-            {/* form here  */}
-            <form onSubmit={handleSignup} className="space-y-5">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-              />
+              {/* Floating Input: Email */}
+              <div className="relative group">
+                <FaIdCard className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-secondary transition-colors opacity-0" />
+                <div className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20">@</div>
+                <input type="email" name="email" required placeholder="Email Identity"
+                  className="w-full pl-14 pr-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white outline-none focus:border-brand-secondary transition-all font-medium placeholder:text-white/20" />
+              </div>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-              />
+              {/* Floating Input: Photo */}
+              <div className="relative group">
+                <FaCameraRetro className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-secondary transition-colors" />
+                <input type="url" name="photo" placeholder="Avatar Image URL (Optional)"
+                  className="w-full pl-14 pr-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white outline-none focus:border-brand-secondary transition-all font-medium placeholder:text-white/20" />
+              </div>
 
-              <input
-                type="text"
-                name="photo"
-                placeholder="Photo URL"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-              />
-
-              <div className="relative">
-                <input
-                  type={show ? "text" : "password"}
-                  name="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-400"
-                />
-                <span
-                  onClick={() => setShow(!show)}
-                  className="absolute right-[15px] top-[15px] cursor-pointer z-10"
-                >
-                  {show ? <FaEye></FaEye> : <IoEyeOff></IoEyeOff>}
+              {/* Password Input */}
+              <div className="relative group">
+                <FaLock className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-secondary transition-colors" />
+                <input type={show ? "text" : "password"} name="password" required placeholder="Security Key"
+                  className="w-full pl-14 pr-14 py-4 bg-white/5 border border-white/10 rounded-2xl text-white outline-none focus:border-brand-secondary transition-all font-medium placeholder:text-white/20" />
+                <span onClick={() => setShow(!show)} className="absolute right-6 top-1/2 -translate-y-1/2 cursor-pointer text-white/20 hover:text-white">
+                  {show ? <FaEye /> : <IoEyeOff />}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  id="privacy"
-                  className="accent-lime-400"
-                />
-                <label htmlFor="privacy" className="text-gray-600">
-                  I accept the{" "}
-                  <span className="text-lime-500 underline cursor-pointer">
-                    Privacy Policy
-                  </span>
+              {/* Checkbox */}
+              <div className="flex items-center gap-3 py-2 pl-2">
+                <input type="checkbox" id="privacy" required className="w-5 h-5 accent-brand-secondary bg-transparent border-white/20 rounded cursor-pointer" />
+                <label htmlFor="privacy" className="text-xs text-white/40 font-medium cursor-pointer hover:text-white/60 transition-colors">
+                  I commit to the <span className="text-brand-secondary underline">Sanctuary Privacy Protocol</span>
                 </label>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-3 bg-black hover:bg-gray-900 text-white rounded-xl font-semibold transition"
-              >
-                Create Account
+              <button type="submit" className="w-full py-5 bg-brand-secondary hover:bg-brand-primary text-black hover:text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl shadow-brand-secondary/10 transition-all active:scale-95 cursor-pointer">
+                Initiate Account
               </button>
             </form>
 
-            <div className="flex items-center my-5">
-              <div className="flex-grow h-px bg-gray-300"></div>
-              <span className="px-3 text-gray-500 text-sm">or</span>
-              <div className="flex-grow h-px bg-gray-300"></div>
+            <div className="relative my-8 flex items-center">
+                <div className="flex-grow h-px bg-white/5"></div>
+                <span className="px-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Or Global Identity</span>
+                <div className="flex-grow h-px bg-white/5"></div>
             </div>
 
-            <button
-              onClick={handleGoogleSignIn}
-              className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition"
-            >
-              <FcGoogle size={22} />
-              <span className="font-medium text-gray-700">
-                Continue with Google
-              </span>
+            <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-4 py-5 bg-transparent border border-white/10 rounded-2xl text-white font-bold hover:bg-white/5 transition-all group cursor-pointer">
+              <FcGoogle size={22} className="group-hover:rotate-12 transition-transform" />
+              <span className="text-[10px] uppercase tracking-widest font-black">Google Protocol</span>
             </button>
-
-            <p className="text-center text-sm text-gray-600 mt-6">
-              Already have an account?{" "}
-              <a
-                href="/sign-in"
-                className="font-semibold text-lime-500 hover:underline"
-              >
-                Login
-              </a>
-            </p>
           </div>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-fadeInLeft { animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fadeInRight { animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      `}} />
     </div>
   );
 };

@@ -9,9 +9,8 @@ const AllBooks = () => {
   const [loading, setLoading] = useState(false);
   const [sortOrder, setSortOrder] = useState("desc");
   const { user } = use(AuthContext);
-  // console.log(user);
 
-  // search
+  // search logic remains unchanged
   const handleSearch = (e) => {
     e.preventDefault();
     const searchTitle = e.target.title.value.trim();
@@ -34,15 +33,13 @@ const AllBooks = () => {
       });
   };
 
-  // Sort by rating
+  // Sort logic remains unchanged
   const handleSortByRating = (order) => {
     setLoading(true);
     setSortOrder(order);
 
     fetch(`https://my-library-orpin.vercel.app/booksSort/sort?order=${order}`)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((result) => {
         setBooks(result);
         setLoading(false);
@@ -54,43 +51,56 @@ const AllBooks = () => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-6">
-        All Books
-      </h2>
+    <div className="w-full max-w-7xl mx-auto p-4 md:p-10 min-h-screen bg-base-100 text-base-content transition-colors duration-300">
+      {/* Page Title */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-5xl font-black text-brand-primary tracking-tight">
+          Browse Library
+        </h2>
+        <div className="w-20 h-1.5 bg-brand-secondary mx-auto mt-4 rounded-full"></div>
+      </div>
 
       <form onSubmit={handleSearch}>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-8">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-10">
+          {/* Search Input - Adapted for Theme */}
           <input
             type="text"
             name="title"
             placeholder="Search books by title..."
-            className="w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-600 transition-all duration-200"
+            className="w-full sm:w-1/2 p-3 bg-base-200 border border-base-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200"
           />
+          
+          {/* Search Button */}
           <button
             type="submit"
-            className="px-6 py-3 bg-violet-600 text-white font-medium rounded-lg shadow-md hover:bg-violet-700 transition-colors duration-200"
+            className="w-full sm:w-auto px-8 py-3 bg-brand-primary text-white font-bold rounded-xl shadow-lg shadow-brand-primary/20 hover:bg-brand-dark transition-all duration-300 active:scale-95"
           >
             Search
           </button>
 
-          {/* Dropdown for sorting */}
+          {/* Sort Dropdown - Adapted for Theme */}
           <select
             value={sortOrder}
             onChange={(e) => handleSortByRating(e.target.value)}
-            className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600 transition-all duration-200"
+            className="w-full sm:w-auto px-4 py-3 bg-base-200 border border-base-300 text-base-content font-medium rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all cursor-pointer"
           >
-            <option value="desc">High to Low ⬇</option>
-            <option value="asc">Low to High ⬆</option>
+            <option value="desc">Sort: High Rating ⬇</option>
+            <option value="asc">Sort: Low Rating ⬆</option>
           </select>
         </div>
       </form>
 
-      {loading ? (
-        <p className="text-center text-gray-500 font-medium">Loading...</p>
-      ) : (
-        <AllBooksTable books={books} loading={loading} />
-      )}
+      {/* Content Section */}
+      <div className="bg-base-100 rounded-2xl">
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+             <span className="loading loading-spinner loading-lg text-brand-primary"></span>
+             <p className="mt-4 text-base-content/60 font-medium">Fetching books...</p>
+          </div>
+        ) : (
+          <AllBooksTable books={books} loading={loading} />
+        )}
+      </div>
     </div>
   );
 };

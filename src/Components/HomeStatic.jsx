@@ -23,24 +23,26 @@ const featuredBook = {
 
 const HomeStatic = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
       {/* Top Genres */}
       <section>
-        <h2 className="text-3xl font-bold text-center mb-8 text-violet-700">
-          Top Genres
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10 text-brand-primary dark:text-brand-secondary transition-colors duration-300">
+          Explore Top Genres
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
           {genres.map((genre) => (
             <div
               key={genre.name}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transform transition"
+              className="bg-base-100 border border-base-200 rounded-xl shadow-md overflow-hidden hover:scale-105 transform transition-all duration-300 group cursor-pointer"
             >
-              <img
-                src={genre.image}
-                alt={genre.name}
-                className="w-full h-40 object-cover"
-              />
-              <div className="p-4 text-center font-semibold text-gray-700">
+              <div className="overflow-hidden h-40">
+                <img
+                  src={genre.image}
+                  alt={genre.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 text-center font-bold text-base-content group-hover:text-brand-primary transition-colors">
                 {genre.name}
               </div>
             </div>
@@ -48,24 +50,41 @@ const HomeStatic = () => {
         </div>
       </section>
 
-      {/* Book of the Week */}
-      <section className="flex flex-col md:flex-row items-center gap-8 bg-violet-100 rounded-xl p-6 md:p-12 shadow-lg">
-        <div className="md:w-1/2 flex justify-center md:justify-start">
-          <img
-            src={featuredBook.image}
-            alt={featuredBook.title}
-            className="w-100 h-80 object-cover rounded-lg shadow-xl"
-          />
+      {/* Book of the Week - Featured Section */}
+      <section className="flex flex-col md:flex-row items-center gap-10 bg-base-200 dark:bg-brand-primary/10 rounded-2xl p-8 md:p-14 shadow-xl border border-base-300 relative overflow-hidden">
+        {/* Decorative Background Element */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+        
+        <div className="md:w-1/2 flex justify-center">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <img
+              src={featuredBook.image}
+              alt={featuredBook.title}
+              className="relative w-72 h-96 object-cover rounded-lg shadow-2xl transform group-hover:rotate-2 transition-transform duration-300"
+            />
+          </div>
         </div>
-        <div className="md:w-1/2 text-center md:text-left">
-          <h3 className="text-2xl font-bold text-violet-800 mb-3">
+
+        <div className="md:w-1/2 text-center md:text-left space-y-5">
+          <div className="inline-block px-4 py-1 bg-brand-secondary text-black text-xs font-bold rounded-full mb-2 uppercase tracking-widest">
+            Book of the Week
+          </div>
+          <h3 className="text-3xl font-black text-brand-primary dark:text-white leading-tight">
             {featuredBook.title}
           </h3>
-          <p className="text-gray-600 mb-4 italic">by {featuredBook.author}</p>
-          <p className="text-gray-700 mb-4">{featuredBook.description}</p>
-          <Link to='/all-book' className="mt-6 px-6 py-3 bg-violet-700 text-white rounded-lg hover:bg-violet-800 transition cursor-pointer">
-            Read More
-          </Link>
+          <p className="text-brand-primary font-medium italic">by {featuredBook.author}</p>
+          <p className="text-base-content/80 text-lg leading-relaxed">
+            {featuredBook.description}
+          </p>
+          <div className="pt-4">
+            <Link 
+              to='/all-book' 
+              className="inline-block px-8 py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-dark shadow-lg shadow-brand-primary/30 transition-all duration-300 active:scale-95"
+            >
+              Start Reading
+            </Link>
+          </div>
         </div>
       </section>
     </div>
