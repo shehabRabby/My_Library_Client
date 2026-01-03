@@ -58,7 +58,7 @@ const Footer = () => {
               <Link to="/" className="hover:text-brand-primary transition-colors">Home</Link>
               <Link to="/all-book" className="hover:text-brand-primary transition-colors">All Books</Link>
               <Link to="/about-us" className="hover:text-brand-primary transition-colors">About Us</Link>
-              <Link to="/my-profile" className="hover:text-brand-primary transition-colors">My Profile</Link>
+              <Link to="/dashboard/my-profile" className="hover:text-brand-primary transition-colors">My Profile</Link>
             </nav>
           </div>
 
@@ -66,8 +66,8 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-brand-primary">Curator Desk</h4>
             <nav className="flex flex-col space-y-3 text-sm font-bold">
-              <Link to="/add-books" className="hover:text-brand-primary transition-colors">Add New Book</Link>
-              <Link to="/my-books" className="hover:text-brand-primary transition-colors">My Collections</Link>
+              <Link to="/dashboard/add-books" className="hover:text-brand-primary transition-colors">Add New Book</Link>
+              <Link to="/dashboard/add-books" className="hover:text-brand-primary transition-colors">My Collections</Link>
               <Link to="/sign-in" className="hover:text-brand-primary transition-colors">Login to Archive</Link>
               <Link to="/sign-up" className="hover:text-brand-primary transition-colors">Join Community</Link>
             </nav>
