@@ -4,18 +4,18 @@ import LatestBooks from "../Components/LatestBooks";
 import HomeStatic from "../Components/HomeStatic";
 import { AuthContext } from "../Context/AuthProvider";
 import { FaArrowRight, FaChevronLeft, FaChevronRight, FaMouse } from "react-icons/fa";
+import CategoryGrid from "../Components/Home/CategoryGrid";
+import Testimonials from "../Components/Home/Testimonials";
+import FaqSection from "../Components/Home/FaqSection";
+import Newsletter from "../Components/Home/NewsLatter";
 
-// Requirement: Local assets used in a structured array
+// Assets
 import book1 from "../assets/new5.png";
 import book2 from "../assets/new2.png";
 import book3 from "../assets/new3.png";
 import book4 from "../assets/new4.png";
 import book5 from "../assets/new7.png";
 import book6 from "../assets/new8.png";
-import CategoryGrid from "../Components/Home/CategoryGrid";
-import Testimonials from "../Components/Home/Testimonials";
-import FaqSection from "../Components/Home/FaqSection";
-import Newsletter from "../Components/Home/NewsLatter";
 
 const bannerImages = [book1, book2, book3, book4, book5, book6];
 
@@ -37,12 +37,11 @@ const Home = () => {
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
 
   return (
-    <div className="bg-base-100 text-base-content min-h-screen">
-      
-      {/* REQUIREMENT: Hero Section Max height 60–70% of screen */}
-      <section className="relative h-[65vh] min-h-[500px] w-full bg-brand-primary overflow-hidden group">
+    <div className="bg-base-100 text-base-content min-h-screen transition-colors duration-300">      
+      {/* SECTION 1: HERO / CAROUSEL (Max height 65% of screen) */}
+      <section className="relative h-[65vh] min-h-[550px] w-full bg-brand-primary overflow-hidden group">
         
-        {/* Animated Background Blobs */}
+        {/* Animated Background Decorative Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-brand-secondary/20 rounded-full blur-[100px] animate-blob"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
 
@@ -50,11 +49,14 @@ const Home = () => {
           
           {/* Banner Text Area */}
           <div className="md:w-1/2 text-center md:text-left space-y-6">
+            <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em] mb-2">
+              The Sanctuary is Open
+            </div>
             <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none animate-fadeIn">
               Welcome to <br />
               <span className="text-brand-secondary">Book Haven</span>
             </h1>
-            <p className="text-lg text-white/80 max-w-md font-medium">
+            <p className="text-lg text-white/80 max-w-md font-medium leading-relaxed">
               Explore thousands of books, discover hidden gems, and unleash your imagination in our digital sanctuary.
             </p>
 
@@ -63,9 +65,11 @@ const Home = () => {
               <Link to="/all-book" className="flex items-center gap-2 bg-brand-secondary text-black font-black px-8 py-4 rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95">
                 ALL BOOKS <FaArrowRight />
               </Link>
-              <Link to="/add-books" className="px-8 py-4 border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/10 transition-all">
-                CREATE BOOK
-              </Link>
+              {!user && (
+                <Link to="/sign-up" className="px-8 py-4 border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/10 transition-all">
+                  JOIN NOW
+                </Link>
+              )}
             </div>
           </div>
 
@@ -82,60 +86,57 @@ const Home = () => {
           </div>
         </div>
 
-        {/* REQUIREMENT: Manual Control Arrows (Visible on hover) */}
-        <button onClick={handlePrev} className="absolute left-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20">
+        {/* REQUIREMENT: Manual Control Arrows */}
+        <button onClick={handlePrev} className="absolute left-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20 border border-white/10 backdrop-blur-md">
           <FaChevronLeft size={24} />
         </button>
-        <button onClick={handleNext} className="absolute right-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20">
+        <button onClick={handleNext} className="absolute right-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black opacity-0 group-hover:opacity-100 transition-all z-20 border border-white/10 backdrop-blur-md">
           <FaChevronRight size={24} />
         </button>
 
         {/* REQUIREMENT: Visual Hint to next section */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
-            <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Scroll Down</p>
+            <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Explore</p>
             <FaMouse className="text-brand-secondary animate-bounce" />
         </div>
 
-        {/* Manual Progress Indicators (Dots) */}
-        <div className="absolute bottom-10 right-10 flex gap-2">
+        {/* Progress Indicators */}
+        <div className="absolute bottom-10 right-10 hidden md:flex gap-2">
             {bannerImages.map((_, index) => (
                 <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-brand-secondary" : "w-2 bg-white/30"}`}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${index === currentIndex ? "w-10 bg-brand-secondary" : "w-3 bg-white/30"}`}
                 />
             ))}
         </div>
       </section>
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Latest Books */}
-        <div className="py-2">
+      <main className="max-w-7xl mx-auto overflow-hidden">
+        <div className="py-2 px-1">
             <LatestBooks data={data} />
         </div>
 
-           {/* Static Sections */}
-        <div className="pb-2">
+        <div className="py-2">
+          <CategoryGrid />
+        </div>
+
+        <div className="py-3">
            <HomeStatic />
         </div>
 
-        <div className="py-2">
-          <CategoryGrid></CategoryGrid>
+        <div className="py-10">
+            <Testimonials />
         </div>
 
         <div className="py-2">
-            <Testimonials></Testimonials>
-        </div>
-        <div className="py-2">
-            <FaqSection></FaqSection>
-        </div>
-        <div className="py-2">
-            <Newsletter></Newsletter>
+            <FaqSection />
         </div>
 
-
-     
+        <div className="py-2">
+            <Newsletter />
+        </div>
       </main>
     </div>
   );

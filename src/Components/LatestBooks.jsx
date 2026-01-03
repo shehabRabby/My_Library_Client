@@ -5,7 +5,7 @@ const LatestBooks = ({ data }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       {/* Section Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary dark:text-brand-secondary transition-colors duration-300">
           Latest Books Collection
         </h2>
