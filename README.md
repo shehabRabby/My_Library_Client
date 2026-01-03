@@ -6,7 +6,7 @@
 
 ## 🌐 Live Experience
 
-🔗 **Live Demo:** *Replace with your actual Vercel/Netlify link*
+🔗 **Live Demo:** *[https://bookhaven001.netlify.app/]*
 
 ---
 
