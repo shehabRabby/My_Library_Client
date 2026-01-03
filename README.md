@@ -6,7 +6,7 @@
 
 ## 🌐 Live Experience
 
-🔗 **Live Demo:** *[https://bookhaven1001.netlify.app/]*
+🔗 **Live Demo:** *[https:/bookhaven1001.netlify.app/]*
 
 ---
 
