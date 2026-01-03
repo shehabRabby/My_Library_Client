@@ -40,6 +40,7 @@ const Navbar = () => {
               <NavLink to="/" className={navLinkClass}>Home</NavLink>
               <NavLink to="/all-book" className={navLinkClass}>All Books</NavLink>
               <NavLink to="/about-us" className={navLinkClass}>About Us</NavLink>
+              <NavLink to="/support-us" className={navLinkClass}>Support Us</NavLink>
               {user && (
                 <>
                   <div className="divider opacity-10 my-0"></div>
@@ -64,6 +65,8 @@ const Navbar = () => {
             <NavLink to="/" className={navLinkClass}>Home</NavLink>
             <NavLink to="/all-book" className={navLinkClass}>All Books</NavLink>
             <NavLink to="/about-us" className={navLinkClass}>About Us</NavLink>
+              <NavLink to="/support-us" className={navLinkClass}>Support Us</NavLink>
+
             {user && (
               <>
                 <NavLink to="/add-books" className={navLinkClass}>Add Books</NavLink>
