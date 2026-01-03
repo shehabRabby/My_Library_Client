@@ -48,7 +48,43 @@ Fast, secure, and fully responsive — built to make managing your favorite book
 💬 Book Details: View full details & comments
 🔑 Login/Register: Firebase-auth-based access
 
-## 🧑‍💻 Developer
 
-Developed by [Md.Shehab Al Rabby]
-📧 [shehabrabby764@gmail.com]
+## 🚀 Run Locally
+
+Follow these steps to run the project on your local machine:
+
+1. Clone the Repository
+```bash
+git clone https://github.com/your-username/your-project.git
+cd your-project
+
+2. Install Dependencies
+# Frontend
+npm install
+
+# Backend
+cd backend
+npm install
+cd ..
+
+3. Setup Environment Variables
+
+Create a .env file in the root directory and add your Firebase & MongoDB config:
+
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+
+MONGO_URI=your_mongodb_connection_string
+4. Start Frontend & Backend Together
+Open two terminals or use a tool like concurrently:
+# Terminal 1: Start Frontend
+npm start
+
+# Terminal 2: Start Backend
+cd backend
+npm run dev
+
