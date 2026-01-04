@@ -160,7 +160,7 @@ const DashboardHome = () => {
           </div>
         </motion.div>
 
-        {/* Latest Books Images Feed */}
+        {/* Latest Books Images  */}
         <motion.div variants={itemVariants} className="lg:col-span-5 bg-[#F8FAFC] p-6 md:p-8 rounded-3xl md:rounded-[3.5rem] border border-slate-200">
           <h4 className="text-base md:text-lg font-black text-slate-800 mb-6 md:mb-8 flex items-center gap-2">
             <FaHistory className="text-brand-primary" /> Recently Added

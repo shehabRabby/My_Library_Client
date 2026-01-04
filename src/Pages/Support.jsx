@@ -38,7 +38,7 @@ const Support = () => {
   return (
     <div className="min-h-screen bg-base-100 overflow-x-hidden transition-colors duration-300">
       
-      {/* 1. HERO SECTION - Floating & Gradient */}
+      {/* 1. HERO SECTION */}
       <section className="relative bg-brand-primary py-24 px-6 overflow-hidden">
         {/* Animated Background Circles */}
         <motion.div 
@@ -66,7 +66,7 @@ const Support = () => {
         </div>
       </section>
 
-      {/* 2. HELP CATEGORIES - Staggered Slide Up */}
+      {/* 2. HELP CATEGORIES  */}
       <motion.section 
         variants={containerVariants}
         initial="hidden"
@@ -92,7 +92,7 @@ const Support = () => {
         </div>
       </motion.section>
 
-      {/* 3. CONTACT SECTION - Magnetic Form Effect */}
+      {/* 3. CONTACT SECTION  */}
       <section className="max-w-7xl mx-auto px-6 py-20 bg-base-200/50 rounded-[4rem] mb-20 border border-base-content/5">
         <div className="flex flex-col md:flex-row items-center gap-16">
           

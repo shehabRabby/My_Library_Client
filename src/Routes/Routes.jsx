@@ -17,7 +17,6 @@ import Support from "../Pages/Support";
 import DashboardHome from "../Pages/DashboardHome";
 
 export const router = createBrowserRouter([
-  // 1. PUBLIC ROUTES (Using MainLayout)
   {
     path: "/",
     element: <MainLayout></MainLayout>,
@@ -56,7 +55,6 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // 2. PRIVATE DASHBOARD ROUTES (Using DashboardLayout)
   {
     path: "/dashboard",
     element: (
@@ -66,7 +64,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true, // This renders DashboardHome at /dashboard
+        index: true, 
         element: <DashboardHome />,
       },
       {

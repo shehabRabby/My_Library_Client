@@ -44,9 +44,9 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-base-100 overflow-hidden">
       
-      {/* LEFT SECTION: BRANDING & MANTRA */}
+      {/* LEFT SECTION */}
       <div className="flex flex-col justify-center items-start w-full md:w-5/12 px-10 md:px-24 py-16 space-y-8 bg-base-100 relative">
-        {/* Subtle Background Decoration */}
+        {/* Subtle Background */}
         <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-brand-primary/5 rounded-full blur-[100px]"></div>
         
         <div className="relative z-10 animate-fadeInLeft">
@@ -79,9 +79,9 @@ const Login = () => {
         </div>
       </div>
 
-      {/* RIGHT SECTION: THE SANCTUARY GATE (FORM) */}
+      {/* RIGHT SECTION */}
       <div className="relative w-full md:w-7/12 flex items-center justify-center p-6">
-        {/* Cinematic Background Image */}
+        {/* Background Image */}
         <div 
             className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000')] bg-cover bg-center transition-transform duration-[10s] hover:scale-110"
         ></div>

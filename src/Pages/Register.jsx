@@ -65,7 +65,7 @@ const Register = () => {
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 relative z-10 mx-4 shadow-2xl rounded-[3.5rem] overflow-hidden border border-white/5">
         
-        {/* LEFT PANEL: EDITORIAL BRANDING */}
+        {/* LEFT PANEL:  BRANDING */}
         <div className="lg:col-span-5 bg-white p-12 md:p-16 flex flex-col justify-between space-y-12">
           <div className="animate-fadeInLeft">
             <div className="flex items-center gap-2 mb-8">
@@ -101,7 +101,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL: REGISTRATION VAULT */}
+        {/* RIGHT PANEL: REGISTRATION  */}
         <div className="lg:col-span-7 bg-[#111] p-10 md:p-16 flex flex-col justify-center">
           <div className="w-full max-w-md mx-auto animate-fadeInRight">
             <h2 className="text-3xl font-black text-white tracking-tight mb-2">Create Credentials</h2>

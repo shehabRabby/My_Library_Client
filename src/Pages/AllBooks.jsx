@@ -11,9 +11,9 @@ const AllBooks = () => {
   const [sortOrder, setSortOrder] = useState("desc");
   const { user } = use(AuthContext);
 
-  // --- Pagination State ---
+  //  Pagination State
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Change this number as needed
+  const itemsPerPage = 8; 
 
   // Calculate slice indices
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -98,7 +98,7 @@ const AllBooks = () => {
             {/* Pass currentBooks instead of books */}
             <AllBooksTable books={currentBooks} loading={loading} />
 
-            {/* --- Pagination Controls --- */}
+            {/*  Pagination Controls */}
             {totalPages > 1 && (
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 border-t border-base-300 pt-6">
                 <p className="text-sm opacity-60 font-medium">

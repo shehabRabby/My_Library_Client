@@ -119,7 +119,7 @@ const MyBook = () => {
 
   return (
     <div className="space-y-6 md:space-y-8 animate-fadeIn px-2 md:px-0 pb-10">
-      {/* 1. HEADER SECTION - Fully Responsive Stacking */}
+      {/* 1. HEADER SECTION */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div className="text-center lg:text-left">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight uppercase">
@@ -141,7 +141,7 @@ const MyBook = () => {
         </div>
       </div>
 
-      {/* 2. TABLE CONTAINER - Dynamic Rounding & Horizontal Scroll fix */}
+      {/* 2. TABLE CONTAINER */}
       <div className="bg-base-100 rounded-2xl md:rounded-[2.5rem] border border-base-300 shadow-sm overflow-hidden">
         {books.length > 0 ? (
             <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-base-300">

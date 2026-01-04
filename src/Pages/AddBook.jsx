@@ -6,7 +6,6 @@ import { FaPlus, FaStar, FaPenNib, FaUserCircle, FaEnvelope } from "react-icons/
 const AddBook = () => {
   const { user } = useContext(AuthContext);
   
-  // Local state for live preview (Now with Dynamic Rating)
   const [preview, setPreview] = useState({
     title: "Book Title",
     author: "Author Name",
@@ -30,8 +29,8 @@ const AddBook = () => {
       rating: parseFloat(form.rating.value) || 0,
       summary: form.summary.value,
       coverImage: form.photo.value,
-      userEmail: user?.email, // Directly from context
-      userName: user?.displayName, // Directly from context
+      userEmail: user?.email, 
+      userName: user?.displayName,
     };
 
     fetch("https://my-library-orpin.vercel.app/books", {
@@ -129,7 +128,7 @@ const AddBook = () => {
           </form>
         </div>
 
-        {/* Right Side: Unique Live Preview Card */}
+        {/* Right Side: Live Preview Card */}
         <div className="w-full lg:w-1/3 lg:sticky lg:top-24 space-y-6">
           <p className="text-center font-black uppercase tracking-widest text-base-content/40 text-xs">Visual Preview</p>
           <div className="relative group mx-auto w-72 h-[450px] bg-base-200 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-4 border-base-300 transform lg:rotate-2 hover:rotate-0 transition-all duration-500">

@@ -14,7 +14,7 @@ const ErrorPage = () => {
         <div className="absolute bottom-[10%] right-[15%] w-96 h-96 bg-brand-secondary/10 rounded-full blur-[120px] animate-pulse [animation-delay:2s]"></div>
       </div>
 
-      {/* FLOATING BOOK ICONS (Unique Archive Touch) */}
+      {/* FLOATING BOOK ICONS */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <FaBookOpen className="absolute top-20 left-[20%] text-brand-primary text-6xl animate-float" />
         <FaBookOpen className="absolute bottom-40 right-[25%] text-brand-secondary text-4xl animate-float [animation-delay:1s]" />
@@ -24,7 +24,7 @@ const ErrorPage = () => {
       {/* MAIN ERROR CARD */}
       <div className="max-w-2xl w-full bg-base-100/40 backdrop-blur-xl border border-base-300 p-12 md:p-20 rounded-[4rem] shadow-2xl text-center relative z-10 animate-fadeInUp">
         
-        {/* BIG 404 WITH GRADIENT */}
+        {/* 404 WITH GRADIENT */}
         <h1 className="text-[12rem] md:text-[15rem] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-brand-primary to-purple-900 select-none">
           404
         </h1>

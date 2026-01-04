@@ -3,13 +3,17 @@ import { useLoaderData, Link } from "react-router";
 import LatestBooks from "../Components/LatestBooks";
 import HomeStatic from "../Components/HomeStatic";
 import { AuthContext } from "../Context/AuthProvider";
-import { FaArrowRight, FaChevronLeft, FaChevronRight, FaMouse } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
+  FaMouse,
+} from "react-icons/fa";
 import CategoryGrid from "../Components/Home/CategoryGrid";
 import Testimonials from "../Components/Home/Testimonials";
 import FaqSection from "../Components/Home/FaqSection";
 import Newsletter from "../Components/Home/NewsLatter";
-
-// Assets
+// image
 import book1 from "../assets/new5.png";
 import book2 from "../assets/new2.png";
 import book3 from "../assets/new3.png";
@@ -24,7 +28,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { user } = useContext(AuthContext);
 
-  // REQUIREMENT: Interactive (Auto control)
+  // Interactive
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
@@ -32,79 +36,96 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // REQUIREMENT: Interactive (Manual controls)
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
+  // Interactive
+  const handleNext = () =>
+    setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
+  const handlePrev = () =>
+    setCurrentIndex(
+      (prev) => (prev - 1 + bannerImages.length) % bannerImages.length
+    );
 
   return (
-    <div className="bg-base-100 text-base-content min-h-screen transition-colors duration-300">      
-      {/* SECTION 1: HERO / CAROUSEL (Max height 65% of screen) */}
+    <div className="bg-base-100 text-base-content min-h-screen transition-colors duration-300">
+      {/*  CAROUSEL */}
       <section className="relative min-h-screen md:h-[65vh] md:min-h-[550px] w-full bg-brand-primary overflow-hidden group py-12 md:py-0">
-  
-  {/* Animated Background Decorative Elements - Scaled down for mobile */}
-  <div className="absolute top-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-brand-secondary/20 rounded-full blur-[80px] md:blur-[100px] animate-blob"></div>
-  <div className="absolute bottom-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full blur-[80px] md:blur-[100px] animate-blob animation-delay-2000"></div>
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-brand-secondary/20 rounded-full blur-[80px] md:blur-[100px] animate-blob"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full blur-[80px] md:blur-[100px] animate-blob animation-delay-2000"></div>
 
-  <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center md:justify-between z-10 gap-10">
-    
-    {/* Banner Text Area */}
-    <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
-      <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em]">
-        The Sanctuary is Open
-      </div>
-      <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight md:leading-none animate-fadeIn">
-        Welcome to <br />
-        <span className="text-brand-secondary">Book Haven</span>
-      </h1>
-      <p className="text-base md:text-lg text-white/80 max-w-md mx-auto md:mx-0 font-medium leading-relaxed">
-        Explore thousands of books, discover hidden gems, and unleash your imagination.
-      </p>
+        <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center md:justify-between z-10 gap-10">
+          {/* Banner Text Area */}
+          <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
+            <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em]">
+              The Sanctuary is Open
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight md:leading-none animate-fadeIn">
+              Welcome to <br />
+              <span className="text-brand-secondary">Book Haven</span>
+            </h1>
+            <p className="text-base md:text-lg text-white/80 max-w-md mx-auto md:mx-0 font-medium leading-relaxed">
+              Explore thousands of books, discover hidden gems, and unleash your
+              imagination.
+            </p>
 
-      {/* Interactive CTA */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-        <Link to="/all-book" className="flex items-center justify-center gap-2 bg-brand-secondary text-black font-black px-8 py-4 rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95">
-          ALL BOOKS <FaArrowRight />
-        </Link>
-        {!user && (
-          <Link to="/sign-up" className="px-8 py-4 border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/10 transition-all text-center">
-            JOIN NOW
-          </Link>
-        )}
-      </div>
-    </div>
+            {/* Interactive */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+              <Link
+                to="/all-book"
+                className="flex items-center justify-center gap-2 bg-brand-secondary text-black font-black px-8 py-4 rounded-2xl hover:bg-white transition-all shadow-xl active:scale-95"
+              >
+                ALL BOOKS <FaArrowRight />
+              </Link>
+              {!user && (
+                <Link
+                  to="/sign-up"
+                  className="px-8 py-4 border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/10 transition-all text-center"
+                >
+                  JOIN NOW
+                </Link>
+              )}
+            </div>
+          </div>
 
-    {/* Slider Display - Fixed image cut-off */}
-    <div className="w-full md:w-1/2 flex justify-center relative">
-      <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-[400px] bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-6 md:p-8 shadow-2xl flex items-center justify-center transition-transform duration-700 hover:rotate-3">
-        <img
-          key={currentIndex}
-          src={bannerImages[currentIndex]}
-          alt="Featured Book"
-          className="w-full h-full object-contain animate-fadeInScale"
-        />
-      </div>
-    </div>
-  </div>
+          {/* Slider Display */}
+          <div className="w-full md:w-1/2 flex justify-center relative">
+            <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-[400px] bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-6 md:p-8 shadow-2xl flex items-center justify-center transition-transform duration-700 hover:rotate-3">
+              <img
+                key={currentIndex}
+                src={bannerImages[currentIndex]}
+                alt="Featured Book"
+                className="w-full h-full object-contain animate-fadeInScale"
+              />
+            </div>
+          </div>
+        </div>
 
-  {/* Controls - Hidden on small mobile to avoid clutter */}
-  <button onClick={handlePrev} className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black transition-all z-20 border border-white/10 backdrop-blur-md">
-    <FaChevronLeft size={24} />
-  </button>
-  <button onClick={handleNext} className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black transition-all z-20 border border-white/10 backdrop-blur-md">
-    <FaChevronRight size={24} />
-  </button>
+        {/* Hidden on small mobile */}
+        <button
+          onClick={handlePrev}
+          className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black transition-all z-20 border border-white/10 backdrop-blur-md"
+        >
+          <FaChevronLeft size={24} />
+        </button>
+        <button
+          onClick={handleNext}
+          className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/20 text-white hover:bg-brand-secondary hover:text-black transition-all z-20 border border-white/10 backdrop-blur-md"
+        >
+          <FaChevronRight size={24} />
+        </button>
 
-  {/* Bottom Visual Hint - Hidden on mobile */}
-  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 opacity-50">
-      <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Explore</p>
-      <FaMouse className="text-brand-secondary animate-bounce" />
-  </div>
-</section>
+        {/* Hidden on mobile */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 opacity-50">
+          <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">
+            Explore
+          </p>
+          <FaMouse className="text-brand-secondary animate-bounce" />
+        </div>
+      </section>
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto overflow-hidden">
         <div className="py-2 px-1">
-            <LatestBooks data={data} />
+          <LatestBooks data={data} />
         </div>
 
         <div className="py-2">
@@ -112,19 +133,19 @@ const Home = () => {
         </div>
 
         <div className="py-3">
-           <HomeStatic />
+          <HomeStatic />
         </div>
 
         <div className="py-10">
-            <Testimonials />
+          <Testimonials />
         </div>
 
         <div className="py-2">
-            <FaqSection />
+          <FaqSection />
         </div>
 
         <div className="py-2">
-            <Newsletter />
+          <Newsletter />
         </div>
       </main>
     </div>

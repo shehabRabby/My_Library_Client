@@ -10,7 +10,7 @@ const UpdateBooks = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   
-  // Handling both possible data structures from loader
+  
   const book = data.result || data;
 
   // Local state for live visual feedback
@@ -83,7 +83,7 @@ const UpdateBooks = () => {
                 </div>
             </div>
             
-            {/* INTERACTIVE PREVIEW BADGE */}
+            {/*  PREVIEW BADGE */}
             <div className="flex items-center gap-4 bg-base-200 p-3 pr-6 rounded-full border border-base-300 shadow-sm animate-pulse-slow">
                 <img 
                     src={currentPhoto || "https://via.placeholder.com/150"} 
@@ -99,7 +99,7 @@ const UpdateBooks = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* LEFT COLUMN: THE MASTER FORM */}
+          {/* LEFT COLUMN */}
           <form onSubmit={handleUpdateBook} className="lg:col-span-2 space-y-6 bg-base-200 p-8 md:p-12 rounded-[3rem] border border-base-300 shadow-xl relative overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">

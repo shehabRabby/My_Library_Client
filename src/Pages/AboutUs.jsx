@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <div className="bg-base-100 min-h-screen transition-colors duration-500 overflow-hidden pb-20">
       
-      {/* 1. HERO SECTION */}
+      {/* HERO SECTION */}
       <section className="relative pt-24 pb-16 px-6 text-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-b from-brand-primary/10 to-transparent -z-10"></div>
         <div className="max-w-4xl mx-auto space-y-6 animate-fadeInUp">
@@ -20,7 +20,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* 2. BENTO STATS & STORY */}
+      {/*  STATS & STORY */}
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="md:col-span-3 bg-base-200 p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-10 items-center border border-base-300">
@@ -63,7 +63,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* 3. THE USER JOURNEY (Timeline) */}
+      {/* THE USER JOURNEY */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-center text-3xl md:text-5xl font-black mb-16 italic">How it works</h2>
         
@@ -85,7 +85,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* 4. VALUES GRID */}
+      {/*  VALUES GRID */}
       <section className="bg-base-200 py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -113,7 +113,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* 5. FAQ SECTION (Accordion) */}
+      {/* FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-6 py-24">
         <h2 className="text-center text-3xl font-black mb-12">Common Questions</h2>
         <div className="join join-vertical w-full bg-base-100 border border-base-300">

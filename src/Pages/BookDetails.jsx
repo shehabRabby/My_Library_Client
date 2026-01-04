@@ -71,10 +71,10 @@ const BookDetails = () => {
 
       <div className="max-w-7xl mx-auto">
         
-        {/* HERO SECTION: FLEX-ROW-REVERSE FOR MODERN LOOK */}
+        {/* HERO SECTION */}
         <div className="flex flex-col lg:flex-row-reverse gap-12 items-center mb-20">
           
-          {/* IMAGE PREVIEW (ANIMATED 3D EFFECT) */}
+          {/* IMAGE PREVIEW  */}
           <div className="w-full lg:w-1/2 flex justify-center animate-fadeInRight">
              <div className="relative group perspective-1000">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-brand-primary to-brand-secondary rounded-[3rem] opacity-20 blur-2xl group-hover:opacity-40 transition duration-1000"></div>
@@ -136,10 +136,10 @@ const BookDetails = () => {
           </div>
         </div>
 
-        {/* INTERACTIVE COMMENT SECTION */}
+        {/*  COMMENT SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
            
-           {/* COMMENT FORM (LEFT STICKY) */}
+           {/* COMMENT FORM  */}
            <div className="lg:col-span-1 lg:sticky lg:top-24 bg-brand-primary p-8 rounded-[3rem] shadow-2xl text-white overflow-hidden relative group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000"></div>
               

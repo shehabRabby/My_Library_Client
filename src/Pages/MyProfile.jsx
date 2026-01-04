@@ -8,7 +8,6 @@ const MyProfile = () => {
   const { user, handleLogout, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // State for Edit Mode
   const [isEditing, setIsEditing] = useState(false);
   
   // Initialize form data with current user values
@@ -17,7 +16,6 @@ const MyProfile = () => {
     photoURL: user?.photoURL || "",
   });
 
-  // Sync formData if user object changes (important for first load/refresh)
   useEffect(() => {
     if (user) {
       setFormData({
@@ -35,12 +33,11 @@ const MyProfile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     
-    // Show a small loading state if you like, but since the provider is now async:
+    // Show a small loading state while updating
     try {
-      // 1. This now updates Firebase AND refreshes the Context State instantly
       await updateUserProfile(formData.displayName, formData.photoURL);
       
-      // 2. Close edit mode and show success
+      // Close edit mode and show success
       setIsEditing(false);
       Swal.fire({
         icon: 'success',
@@ -62,7 +59,7 @@ const MyProfile = () => {
   };
 
   const handleCancel = () => {
-    // Reset form to original user data before closing
+    // Reset original user data before closing
     setFormData({
       displayName: user?.displayName || "",
       photoURL: user?.photoURL || "",
@@ -154,7 +151,7 @@ const MyProfile = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL: CREDENTIAL DETAILS */}
+        {/* RIGHT side: CREDENTIAL DETAILS */}
         <div className="lg:col-span-8">
           <div className="bg-white h-full p-8 md:p-12 rounded-[3rem] border border-slate-200 shadow-sm flex flex-col justify-between">
             <div className="space-y-10">
