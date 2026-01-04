@@ -9,16 +9,12 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // --- FIXED: Added async/await and manual state update ---
   const updateUserProfile = async (name, photo) => {
-    // 1. Update the data on Firebase servers
     await updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo
     });
 
-    // 2. IMPORTANT: Manually update the local 'user' state.
-    // We spread the currentUser into a new object to force React to re-render components.
     setUser({
       ...auth.currentUser,
       displayName: name,

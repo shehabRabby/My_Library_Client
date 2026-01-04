@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Close mobile menu when route changes
+  // Close mobile menu 
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-[#F8FAFC] overflow-hidden font-sans text-slate-700">
       
-      {/* --- Responsive Sidebar --- */}
+      {/*  Responsive Sidebar  */}
       <aside 
         className={`
           bg-[#0F172A] text-white fixed lg:relative h-full transition-all duration-500 ease-in-out z-[60] shadow-[20px_0_50px_rgba(0,0,0,0.1)]
@@ -130,7 +130,7 @@ const DashboardLayout = () => {
         />
       )}
 
-      {/* --- Content Area --- */}
+      {/*  Content Area  */}
       <div className="flex-grow flex flex-col min-w-0 bg-[#F1F5F9] w-full">
         
         {/* Top Header */}
@@ -183,7 +183,7 @@ const DashboardLayout = () => {
 
         {/* Scrollable Main Section */}
         <main className="flex-grow overflow-y-auto relative scroll-smooth overflow-x-hidden">
-          {/* Decorative Background */}
+          {/* Background */}
           <div className="absolute top-0 right-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-brand-primary/5 rounded-full blur-[60px] md:blur-[100px] -z-10 pointer-events-none"></div>
           
           <div className="max-w-[1600px] mx-auto p-4 md:p-8 lg:p-12">
