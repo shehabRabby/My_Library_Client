@@ -10,7 +10,7 @@ const AllBooksTable = ({ books, loading }) => {
     <div className="w-full bg-base-100 rounded-2xl shadow-xl overflow-hidden border border-base-300 transition-colors duration-300">
       <div className="overflow-x-auto">
         <table className="table w-full border-separate border-spacing-0">
-          {/* Table Header - Brand Themed */}
+          {/* Table Header  */}
           <thead className="hidden md:table-header-group bg-brand-primary text-white">
             <tr>
               <th className="py-4 px-6 text-left text-xs font-bold uppercase tracking-widest border-none">#</th>

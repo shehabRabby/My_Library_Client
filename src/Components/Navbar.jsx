@@ -2,7 +2,6 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import logo from "../assets/logo.png";
-// FIX: Changed FaLayout to FaThLarge (which exists in Font Awesome)
 import { FaUserCircle, FaSignOutAlt, FaThLarge } from "react-icons/fa";
 
 const Navbar = () => {
@@ -99,7 +98,6 @@ const Navbar = () => {
                     <p className="font-bold truncate">{user?.displayName || "Reader"}</p>
                 </div>
                 
-                {/* FIX: Applied FaThLarge here and ensured alignment */}
                 <li>
                   <Link to="/dashboard" className="py-3 px-4 font-bold hover:text-brand-primary transition-colors flex items-center gap-3 rounded-xl">
                     <FaThLarge className="text-brand-primary" /> Dashboard Home

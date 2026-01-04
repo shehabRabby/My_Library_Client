@@ -1,7 +1,7 @@
 const FaqSection = () => {
   return (
     <section className="py-24 max-w-4xl mx-auto px-6 bg-base-100 transition-colors duration-300">
-      {/* Heading with Brand Primary color */}
+      {/* Heading  */}
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
           Common <span className="text-brand-primary">Questions</span>
@@ -11,7 +11,7 @@ const FaqSection = () => {
         </p>
       </div>
 
-      {/* Accordion Container */}
+      {/*  Container */}
       <div className="join join-vertical w-full bg-base-200/50 rounded-[2.5rem] border border-base-content/5 overflow-hidden shadow-sm">
         
         {/* Question 1 */}

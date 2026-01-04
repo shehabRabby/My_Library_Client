@@ -51,7 +51,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: Quick Links - Updated with Router Paths */}
+          {/* Column 2: Quick Links */}
           <div className="space-y-6">
             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-brand-primary">Navigation</h4>
             <nav className="flex flex-col space-y-3 text-sm font-bold">
@@ -62,7 +62,7 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Column 3: Curator Actions - Updated with Router Paths */}
+          {/* Column 3: Curator Actions  */}
           <div className="space-y-6">
             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-brand-primary">Curator Desk</h4>
             <nav className="flex flex-col space-y-3 text-sm font-bold">
@@ -109,7 +109,6 @@ const Footer = () => {
                <span className="hover:text-brand-primary transition-colors cursor-default">Privacy</span>
                <span className="hover:text-brand-primary transition-colors cursor-default">Terms</span>
             </div>
-            {/* Minimalist Visual Brand Hint */}
             <div className="h-1 w-12 bg-brand-secondary rounded-full"></div>
           </div>
         </div>

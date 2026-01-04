@@ -27,7 +27,7 @@ const CategoryGrid = () => {
           {categories.map((cat, index) => (
             <div 
               key={cat.name} 
-              // Custom delay for staggered animation effect
+              // Custom delay for animation 
               style={{ animationDelay: `${index * 100}ms` }}
               className="group cursor-pointer bg-base-200 p-10 rounded-[2.5rem] flex flex-col items-center justify-center gap-4 transition-all duration-500 hover:bg-brand-secondary hover:-translate-y-3 hover:shadow-2xl hover:shadow-brand-secondary/20 animate-fadeInUp"
             >
@@ -41,7 +41,7 @@ const CategoryGrid = () => {
                 {cat.name}
               </p>
 
-              {/* Subtle Decorative Line */}
+              {/* Subtle Line */}
               <div className="w-0 group-hover:w-8 h-[2px] bg-black transition-all duration-500"></div>
             </div>
           ))}

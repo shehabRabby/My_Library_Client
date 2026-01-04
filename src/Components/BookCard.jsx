@@ -12,10 +12,10 @@ const BookCard = ({ book }) => {
       {/* Cover Image Container */}
       <div className="relative h-[65%] bg-base-300 rounded-t-xl overflow-hidden">
         
-        {/* SKELETON LAYER: Always visible until image loads */}
+        {/* SKELETON  visible until image loads */}
         {!isImageLoaded && (
           <div className="absolute inset-0 z-10 bg-base-300 animate-pulse flex items-center justify-center">
-             {/* Optional: Add a small book icon or text in the center of the skeleton */}
+             {/*  text in the center of the skeleton */}
              <span className="text-base-content/10 font-black uppercase tracking-widest text-[10px]">Loading Image...</span>
           </div>
         )}
@@ -24,13 +24,12 @@ const BookCard = ({ book }) => {
           src={coverImage || "https://via.placeholder.com/400x600?text=No+Image"}
           alt={title}
           onLoad={() => setIsImageLoaded(true)}
-          // Use hidden if not loaded to prevent layout shift, then block when ready
           className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
             isImageLoaded ? "opacity-100" : "opacity-0"
           }`}
         />
         
-        {/* Overlays - Hidden until image is ready to prevent floating elements */}
+        {/* Hidden until image is ready to prevent elements */}
         {isImageLoaded && (
           <>
             {rating && (

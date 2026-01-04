@@ -9,9 +9,7 @@ const BookCardSkeleton = () => {
       {/* Info Area Skeleton */}
       <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
         <div className="space-y-2">
-          {/* Title Line */}
           <div className="skeleton h-4 w-3/4"></div>
-          {/* Author Line */}
           <div className="skeleton h-3 w-1/2"></div>
         </div>
 

@@ -52,7 +52,7 @@ const HomeStatic = () => {
 
       {/* Book of the Week - Featured Section */}
       <section className="flex flex-col md:flex-row items-center gap-10 bg-base-200 dark:bg-brand-primary/10 rounded-2xl p-8 md:p-14 shadow-xl border border-base-300 relative overflow-hidden">
-        {/* Decorative Background Element */}
+        {/* Background Element */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
         
         <div className="md:w-1/2 flex justify-center">
